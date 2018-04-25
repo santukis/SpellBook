@@ -1,0 +1,293 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<android.support.design.widget.CoordinatorLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/cl_main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <android.support.v4.widget.NestedScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="15dp">
+
+            <TextView
+                android:id="@+id/tv_name"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentTop="true"
+                android:layout_alignParentRight="true"
+                android:layout_alignParentEnd="true"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentStart="true"
+                android:padding="5dp"
+                android:textAlignment="center"
+                android:textAllCaps="true"
+                android:textSize="20sp"
+                android:textStyle="bold"
+                android:textColor="@android:color/primary_text_light"
+                android:fontFamily="@font/inmortal"
+                android:background="@drawable/upper_rounded_background"
+                tools:text="Fireball" />
+
+            <TextView
+                android:id="@+id/tv_school"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerHorizontal="true"
+                android:layout_below="@+id/tv_name"
+                android:layout_marginTop="2dp"
+                android:layout_marginBottom="2dp"
+                android:textSize="14sp"
+                android:textColor="@android:color/white"
+                tools:text="3rd-level evocation" />
+
+            <LinearLayout
+                android:id="@+id/ll_casting"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:layout_below="@+id/tv_school"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentStart="true"
+                android:layout_alignParentRight="true"
+                android:layout_alignParentEnd="true"
+                android:baselineAligned="false">
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="0.5"
+                    android:orientation="vertical"
+                    android:gravity="center"
+                    android:layout_marginEnd="2dp"
+                    android:layout_marginRight="2dp"
+                    android:background="@android:color/white"
+                    android:padding="2dp">
+
+                    <TextView
+                        android:id="@+id/tv_casting_time_title"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/casting_time"
+                        android:fontFamily="@font/inmortal"
+                        android:textAllCaps="true"
+                        android:textAlignment="center"
+                        android:textSize="15sp"
+                        android:textStyle="bold"
+                        android:textColor="@color/evocation"/>
+
+                    <TextView
+                        android:id="@+id/tv_casting_time"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="5dp"
+                        tools:text="1 action" />
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="0.5"
+                    android:orientation="vertical"
+                    android:gravity="center"
+                    android:background="@android:color/white"
+                    android:padding="2dp">
+
+                    <TextView
+                        android:id="@+id/tv_range_title"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/range"
+                        android:fontFamily="@font/inmortal"
+                        android:textAllCaps="true"
+                        android:textSize="15sp"
+                        android:textStyle="bold"
+                        android:textColor="@color/evocation"/>
+
+                    <TextView
+                        android:id="@+id/tv_range"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="5dp"
+                        tools:text="150 feet" />
+
+                </LinearLayout>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/ll_components"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:layout_below="@+id/ll_casting"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentStart="true"
+                android:layout_alignParentRight="true"
+                android:layout_alignParentEnd="true"
+                android:layout_marginTop="2dp"
+                android:baselineAligned="false">
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="0.5"
+                    android:orientation="vertical"
+                    android:gravity="center"
+                    android:layout_marginRight="2dp"
+                    android:layout_marginEnd="2dp"
+                    android:background="@android:color/white"
+                    android:padding="2dp">
+
+                    <TextView
+                        android:id="@+id/tv_components_title"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/components"
+                        android:fontFamily="@font/inmortal"
+                        android:textAllCaps="true"
+                        android:textSize="15sp"
+                        android:textStyle="bold"
+                        android:textColor="@color/evocation"/>
+
+                    <TextView
+                        android:id="@+id/tv_components"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="5dp"
+                        android:textAlignment="center"
+                        tools:text="V, S, M" />
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="0.5"
+                    android:orientation="vertical"
+                    android:gravity="center"
+                    android:background="@android:color/white"
+                    android:padding="2dp">
+
+                    <TextView
+                        android:id="@+id/tv_duration_title"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/duration"
+                        android:fontFamily="@font/inmortal"
+                        android:textAllCaps="true"
+                        android:textSize="15sp"
+                        android:textStyle="bold"
+                        android:textColor="@color/evocation"/>
+
+                    <TextView
+                        android:id="@+id/tv_duration"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="5dp"
+                        tools:text="Instantaneous" />
+
+                </LinearLayout>
+
+            </LinearLayout>
+
+            <TextView
+                android:id="@+id/tv_component_description_title"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/ll_components"
+                android:layout_centerHorizontal="true"
+                android:layout_marginTop="2dp"
+                android:layout_marginBottom="2dp"
+                android:textColor="@android:color/white"
+                android:textSize="14sp"
+                android:text="@string/component_description"/>
+
+            <TextView
+                android:id="@+id/tv_component_description"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/tv_component_description_title"
+                android:layout_marginBottom="10dp"
+                android:padding="10dp"
+                android:background="@drawable/lower_rounded_background"
+                android:textAlignment="center"
+                tools:text="Un bocado de comida"/>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_alignParentStart="true"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentEnd="true"
+                android:layout_alignParentRight="true"
+                android:layout_alignParentBottom="true"
+                android:layout_below="@+id/tv_component_description"
+                android:gravity="center"
+                android:orientation="vertical">
+
+                <WebView
+                    android:id="@+id/wv_description"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    android:padding="10dp"
+                    android:textSize="14sp"
+                    android:background="@android:color/white"
+                    tools:text="Descripción del hechizo"/>
+
+                <TextView
+                    android:id="@+id/tv_higher_levels_title"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="2dp"
+                    android:layout_marginBottom="2dp"
+                    android:text="@string/at_higher_levels"
+                    android:textColor="@android:color/white"
+                    android:textSize="14sp"/>
+
+                <WebView
+                    android:id="@+id/wv_higher_levels"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/lower_rounded_background"
+                    android:padding="10dp"
+                    tools:text="TextView" />
+
+                <TextView
+                    android:id="@+id/tv_classes"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    android:textAllCaps="true"
+                    android:fontFamily="@font/inmortal"
+                    android:textAlignment="center"
+                    android:textColor="@android:color/white"
+                    android:textSize="16sp"
+                    android:textStyle="bold"
+                    tools:text="Mago, Clérigo" />
+
+            </LinearLayout>
+
+        </RelativeLayout>
+
+    </android.support.v4.widget.NestedScrollView>
+
+    <android.support.design.widget.FloatingActionButton
+        android:id="@+id/fab_add_spell"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="end|bottom"
+        android:layout_margin="10dp"
+        android:src="@drawable/ic_add"
+        app:fabSize="mini"/>
+
+</android.support.design.widget.CoordinatorLayout>
