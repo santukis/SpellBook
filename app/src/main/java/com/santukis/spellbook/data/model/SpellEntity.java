@@ -4,19 +4,19 @@ import android.arch.persistence.room.ColumnInfo;
 import android.arch.persistence.room.Entity;
 import android.arch.persistence.room.Index;
 import android.arch.persistence.room.PrimaryKey;
+import android.support.annotation.NonNull;
 
 import com.santukis.spellbook.domain.model.School;
 
 @Entity(tableName = "spells", indices = {@Index("name")})
 public class SpellEntity {
 
-    @PrimaryKey(autoGenerate = true)
-    private int id;
+    @PrimaryKey
+    @NonNull private String name;
 
     @ColumnInfo(name = "avatar_name")
     private String avatarName;
 
-    private String name;
     private String description;
 
     @ColumnInfo(name = "higher_levels")
@@ -41,14 +41,6 @@ public class SpellEntity {
     private int level;
     private String duration;
     private String professions;
-
-    public int getId() {
-        return id;
-    }
-
-    public void setId(int id) {
-        this.id = id;
-    }
 
     public String getAvatarName() {
         return avatarName;

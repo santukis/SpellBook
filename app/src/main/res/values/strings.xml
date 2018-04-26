@@ -40,5 +40,7 @@
 
     <string name="avatar_creation">Crear Personaje</string>
     <string name="show_avatars">Mis personajes</string>
+    <string name="spells">Hechizos</string>
+    <string name="characters">Personajes</string>
 
 </resources>

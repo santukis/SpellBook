@@ -3,6 +3,7 @@ package com.santukis.spellbook.data.local;
 import android.arch.persistence.room.Dao;
 import android.arch.persistence.room.Delete;
 import android.arch.persistence.room.Insert;
+import android.arch.persistence.room.OnConflictStrategy;
 import android.arch.persistence.room.Query;
 
 import com.santukis.spellbook.data.model.SpellEntity;
@@ -15,7 +16,7 @@ public interface SpellsDao {
     @Query("SELECT * FROM spells WHERE avatar_name == :name ORDER BY name")
     List<SpellEntity> getSpellsFrom(String name);
 
-    @Insert
+    @Insert(onConflict = OnConflictStrategy.REPLACE)
     long insert(SpellEntity spell);
 
     @Delete

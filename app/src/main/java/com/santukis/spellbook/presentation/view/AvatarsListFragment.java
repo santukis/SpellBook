@@ -50,6 +50,8 @@ public class AvatarsListFragment extends Fragment implements OnAvatarClick, Avat
         adapter.setOnAvatarClick(this);
         recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
         recyclerView.setAdapter(adapter);
+
+        ((MainActivity) getActivity()).setActionBarTitle(getString(R.string.characters));
     }
 
     @Override

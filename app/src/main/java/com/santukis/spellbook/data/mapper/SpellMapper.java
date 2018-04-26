@@ -32,7 +32,7 @@ public class SpellMapper {
                     .withSchool(School.values()[Integer.valueOf(tokens[12])])
                     .withLevel(Integer.valueOf(tokens[13]))
                     .withDuration(tokens[14])
-                    .forProfessions(characterProfessionMapper(tokens[15]))
+                    .forProfessions(professionMap(tokens[15]))
                     .build();
             return spell;
 
@@ -59,6 +59,7 @@ public class SpellMapper {
         entity.setSchool(spell.getSchool().name());
         entity.setLevel(spell.getLevel());
         entity.setDuration(spell.getDuration());
+        entity.setProfessions(professionMap(spell.getProfessions()));
         return entity;
     }
 
@@ -81,14 +82,14 @@ public class SpellMapper {
                     .withSchool(School.valueOf(entity.getSchool()))
                     .withLevel(entity.getLevel())
                     .withDuration(entity.getDuration())
-                    .forProfessions(characterProfessionMapper(entity.getProfessions()))
+                    .forProfessions(professionMap(entity.getProfessions()))
                     .build();
             spells.add(spell);
         }
         return spells;
     }
 
-    private static List<Profession> characterProfessionMapper(String text) {
+    private static List<Profession> professionMap(String text) {
         List<Profession> classes = new ArrayList<>();
         String[] tokens = text.split(",");
 
@@ -97,5 +98,19 @@ public class SpellMapper {
             classes.add(profession);
         }
         return classes;
+    }
+
+    private static String professionMap(List<Profession> professions) {
+        String professionText = "";
+
+        for(int i = 0; i < professions.size(); i++) {
+            professionText = professionText.concat(String.valueOf(professions.get(i).ordinal()));
+
+            if(i < professions.size() - 1) {
+                professionText = professionText.concat(",");
+            }
+        }
+
+        return professionText;
     }
 }

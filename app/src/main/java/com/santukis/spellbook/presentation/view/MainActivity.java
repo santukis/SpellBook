@@ -43,6 +43,14 @@ public class MainActivity extends AppCompatActivity {
         return false;
     }
 
+    public void setActionBarTitle(int titleId) {
+        getSupportActionBar().setTitle(titleId);
+    }
+
+    public void setActionBarTitle(String title) {
+        getSupportActionBar().setTitle(title);
+    }
+
     public void openView(Fragment fragment) {
         getFragmentManager()
                 .beginTransaction()

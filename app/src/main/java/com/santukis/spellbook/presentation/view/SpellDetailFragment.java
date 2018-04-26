@@ -110,10 +110,12 @@ public class SpellDetailFragment extends Fragment implements SpellDetailView {
                 .setTitle(R.string.avatar_selection_title)
                 .setMultiChoiceItems(names.toArray(new String[names.size()]), null,
                         (dialog, which, isChecked) -> {
+                        String completeName = names.get(which);
+                        String name = completeName.substring(0, completeName.indexOf("(") - 1);
                             if(isChecked) {
-                                selectedAvatars.add(names.get(which));
+                                selectedAvatars.add(name);
                             } else {
-                                selectedAvatars.remove(names.get(which));
+                                selectedAvatars.remove(name);
                             }
                             Log.d("AVATARS", String.valueOf(selectedAvatars.size()));
                         })

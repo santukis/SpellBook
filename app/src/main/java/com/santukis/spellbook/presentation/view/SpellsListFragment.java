@@ -51,9 +51,11 @@ public class SpellsListFragment extends Fragment implements OnSpellClick, Spells
         try {
             if(getArguments() != null) {
                 String name = getArguments().getString("Avatar", "");
+                ((MainActivity) getActivity()).setActionBarTitle(name);
                 spellsController.loadSpells(name);
 
             } else {
+                ((MainActivity) getActivity()).setActionBarTitle(getString(R.string.spells));
                 spellsController.loadSpells(getResources().getAssets().open("spells.csv"));
             }
 

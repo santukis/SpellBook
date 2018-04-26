@@ -60,6 +60,8 @@ public class AvatarCreationFragment extends Fragment implements BaseView {
         };
         saveButton = view.findViewById(R.id.fab_save);
         enableSaveButton(false);
+
+        ((MainActivity) getActivity()).setActionBarTitle(R.string.avatar_creation);
     }
 
     @Override
