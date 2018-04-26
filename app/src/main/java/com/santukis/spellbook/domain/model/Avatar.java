@@ -21,4 +21,5 @@ public class Avatar {
     public Profession getProfession() {
         return profession;
     }
+
 }

@@ -10,7 +10,7 @@ import com.santukis.spellbook.domain.model.School;
 @Entity(tableName = "spells", indices = {@Index("name")})
 public class SpellEntity {
 
-    @PrimaryKey
+    @PrimaryKey(autoGenerate = true)
     private int id;
 
     @ColumnInfo(name = "avatar_name")
@@ -39,7 +39,8 @@ public class SpellEntity {
     private String castingTime;
     private String school;
     private int level;
-    public String duration;
+    private String duration;
+    private String professions;
 
     public int getId() {
         return id;
@@ -167,5 +168,13 @@ public class SpellEntity {
 
     public void setDuration(String duration) {
         this.duration = duration;
+    }
+
+    public String getProfessions() {
+        return professions;
+    }
+
+    public void setProfessions(String professions) {
+        this.professions = professions;
     }
 }

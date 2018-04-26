@@ -9,11 +9,9 @@ import android.support.design.widget.FloatingActionButton;
 import android.support.v4.content.ContextCompat;
 import android.util.Log;
 import android.view.LayoutInflater;
-import android.view.Menu;
 import android.view.View;
 import android.view.ViewGroup;
 import android.webkit.WebView;
-import android.widget.PopupMenu;
 import android.widget.TextView;
 
 import com.santukis.spellbook.R;
@@ -23,11 +21,13 @@ import com.santukis.spellbook.domain.UseCaseDefaultScheduler;
 import com.santukis.spellbook.domain.UseCaseThreadPoolExecutor;
 import com.santukis.spellbook.domain.usecase.GetAvatars;
 import com.santukis.spellbook.domain.usecase.GetSpell;
+import com.santukis.spellbook.domain.usecase.SaveSpell;
 import com.santukis.spellbook.presentation.boundary.SpellDetailController;
 import com.santukis.spellbook.presentation.boundary.SpellDetailView;
 import com.santukis.spellbook.presentation.controller.SpellDetailControllerImp;
 import com.santukis.spellbook.presentation.presenter.SpellDetailPresenter;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class SpellDetailFragment extends Fragment implements SpellDetailView {
@@ -70,8 +70,9 @@ public class SpellDetailFragment extends Fragment implements SpellDetailView {
     private void initializeViewComponents(View view) {
         SpellDetailPresenter presenter = new SpellDetailPresenter(this);
         controller = new SpellDetailControllerImp(
-                new GetSpell(UseCaseDefaultScheduler.getInstance(), SpellsGatewayImp.getInstance(), presenter),
-                new GetAvatars(UseCaseThreadPoolExecutor.getInstance(), AvatarsGatewayImp.getInstance(getActivity().getApplicationContext()), presenter));
+                new GetSpell(UseCaseDefaultScheduler.getInstance(), SpellsGatewayImp.getInstance(getActivity()), presenter),
+                new GetAvatars(UseCaseThreadPoolExecutor.getInstance(), AvatarsGatewayImp.getInstance(getActivity().getApplicationContext()), presenter),
+                new SaveSpell(UseCaseThreadPoolExecutor.getInstance(), SpellsGatewayImp.getInstance(getActivity()), presenter));
 
         mainLayout = view.findViewById(R.id.cl_main);
         nameView = view.findViewById(R.id.tv_name);
@@ -98,28 +99,39 @@ public class SpellDetailFragment extends Fragment implements SpellDetailView {
     }
 
     @Override
-    public void showAvatars(List<String> names) {
-        PopupMenu charactersMenu = new PopupMenu(getActivity(), addSpellButton);
-        Menu menu = charactersMenu.getMenu();
+    public void closeView() {
+        ((MainActivity) getActivity()).closeView();
+    }
 
-        for (String name : names) {
-            menu.add(name);
-        }
-        charactersMenu.setOnMenuItemClickListener((item) -> {
-            //TODO addSpellToCharacter
-            Log.d("POPUPMENU", item.getTitle().toString());
-            return true;
-        });
-        charactersMenu.show();
+    @Override
+    public void showAvatars(List<String> names) {
+        List<String> selectedAvatars = new ArrayList<>();
+        new AlertDialog.Builder(getActivity())
+                .setTitle(R.string.avatar_selection_title)
+                .setMultiChoiceItems(names.toArray(new String[names.size()]), null,
+                        (dialog, which, isChecked) -> {
+                            if(isChecked) {
+                                selectedAvatars.add(names.get(which));
+                            } else {
+                                selectedAvatars.remove(names.get(which));
+                            }
+                            Log.d("AVATARS", String.valueOf(selectedAvatars.size()));
+                        })
+                .setPositiveButton(android.R.string.ok, (dialog, which) -> {
+                    controller.saveSpellTo(selectedAvatars);
+                })
+                .setNegativeButton(android.R.string.cancel, null)
+                .show();
+
     }
 
     @Override
     public void showNoCharactersMessage() {
         new AlertDialog.Builder(getActivity())
-                .setTitle(R.string.no_characters_title)
-                .setMessage(R.string.no_characters_message)
+                .setTitle(R.string.no_avatars_title)
+                .setMessage(R.string.no_avatars_message)
                 .setPositiveButton(android.R.string.ok, ((dialog, which) -> {
-                    //TODO open CharacterCreationFragment
+                    ((MainActivity) getActivity()).openView(new AvatarCreationFragment());
                 }))
                 .setNegativeButton(android.R.string.cancel, null)
                 .show();
@@ -196,7 +208,7 @@ public class SpellDetailFragment extends Fragment implements SpellDetailView {
     }
 
     @Override
-    public void showClasses(int classId) {
+    public void showProfessions(int classId) {
         String classes = classesView.getText().toString();
 
         if (!classes.isEmpty()) {

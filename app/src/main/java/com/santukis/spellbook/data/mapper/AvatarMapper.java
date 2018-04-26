@@ -19,4 +19,11 @@ public class AvatarMapper {
 
         return avatars;
     }
+
+    public static AvatarEntity map(Avatar avatar) {
+        AvatarEntity entity = new AvatarEntity();
+        entity.setName(avatar.getName());
+        entity.setProfession(avatar.getProfession().name());
+        return entity;
+    }
 }

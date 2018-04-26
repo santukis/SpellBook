@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string-array name="profession">
+        <item>@string/none</item>
+        <item>@string/bard</item>
+        <item>@string/warlock</item>
+        <item>@string/cleric</item>
+        <item>@string/druid</item>
+        <item>@string/ranger</item>
+        <item>@string/sorcerer</item>
+        <item>@string/wizard</item>
+        <item>@string/paladin</item>
+    </string-array>
+
+</resources>

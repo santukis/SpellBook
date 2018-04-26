@@ -1,5 +1,8 @@
 package com.santukis.spellbook.data.gateway;
 
+import android.content.Context;
+
+import com.santukis.spellbook.data.local.SpellsDatabase;
 import com.santukis.spellbook.data.mapper.SpellMapper;
 import com.santukis.spellbook.domain.boundary.SpellsGateway;
 import com.santukis.spellbook.domain.model.Spell;
@@ -15,12 +18,15 @@ public class SpellsGatewayImp implements SpellsGateway {
 
     private static SpellsGatewayImp INSTANCE = null;
     private Spell cachedSpell = Spell.EMPTY_SPELL;
+    private SpellsDatabase database;
 
-    private SpellsGatewayImp() {}
+    private SpellsGatewayImp(Context context) {
+        database = SpellsDatabase.getDatabase(context);
+    }
 
-    public static SpellsGatewayImp getInstance() {
+    public static SpellsGatewayImp getInstance(Context context) {
         if (INSTANCE == null) {
-            INSTANCE = new SpellsGatewayImp();
+            INSTANCE = new SpellsGatewayImp(context);
         }
         return INSTANCE;
     }
@@ -57,5 +63,11 @@ public class SpellsGatewayImp implements SpellsGateway {
     @Override
     public Spell loadSpell() {
         return cachedSpell;
+    }
+
+    @Override
+    public boolean saveSpell(String avatarName) {
+        long insertedSpell = database.spellsDao().insert(SpellMapper.map(cachedSpell, avatarName));
+        return insertedSpell != 0;
     }
 }

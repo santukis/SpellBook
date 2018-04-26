@@ -5,7 +5,6 @@ import java.util.List;
 
 public class Spell {
 
-    private int id;
     private String name;
     private String description;
     private String atHigherLevels;
@@ -20,12 +19,11 @@ public class Spell {
     private School school;
     private int level;
     private String duration;
-    private List<Profession> classes;
+    private List<Profession> professions;
 
-    public static Spell EMPTY_SPELL = new Spell(new Builder(-1));
+    public static Spell EMPTY_SPELL = new Spell(new Builder());
 
     private Spell(Builder builder){
-        this.id = builder.id;
         this.name = builder.name;
         this.description = builder.description;
         this.atHigherLevels = builder.atHigherLevels;
@@ -40,11 +38,7 @@ public class Spell {
         this.school = builder.school;
         this.level = builder.level;
         this.duration = builder.duration;
-        this.classes = builder.classes;
-    }
-
-    public int getId() {
-        return id;
+        this.professions = builder.professions;
     }
 
     public String getName() {
@@ -103,12 +97,11 @@ public class Spell {
         return duration;
     }
 
-    public List<Profession> getClasses() {
-        return classes;
+    public List<Profession> getProfessions() {
+        return professions;
     }
 
     public static class Builder {
-        private int id;
         private String name = "";
         private String description = "";
         private String atHigherLevels = "";
@@ -123,11 +116,7 @@ public class Spell {
         private School school = School.NONE;
         private int level = 0;
         private String duration = "";
-        private List<Profession> classes = new ArrayList<>();
-
-        public Builder(int id) {
-            this.id = id;
-        }
+        private List<Profession> professions = new ArrayList<>();
 
         public Builder withNane(String name) {
             this.name = name;
@@ -199,8 +188,8 @@ public class Spell {
             return this;
         }
 
-        public Builder forClasses(List<Profession> classes) {
-            this.classes = classes;
+        public Builder forProfessions(List<Profession> professions) {
+            this.professions = professions;
             return this;
         }
 

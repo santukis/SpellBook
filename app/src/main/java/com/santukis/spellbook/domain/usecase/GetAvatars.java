@@ -3,7 +3,7 @@ package com.santukis.spellbook.domain.usecase;
 import com.santukis.spellbook.domain.Response;
 import com.santukis.spellbook.domain.UseCase;
 import com.santukis.spellbook.domain.UseCaseScheduler;
-import com.santukis.spellbook.domain.boundary.AvatarGateway;
+import com.santukis.spellbook.domain.boundary.AvatarsGateway;
 import com.santukis.spellbook.domain.boundary.AvatarUseCaseOutput;
 import com.santukis.spellbook.domain.model.Avatar;
 
@@ -11,11 +11,11 @@ import java.util.List;
 
 public class GetAvatars extends UseCase<Void, List<Avatar>> {
 
-    private final AvatarGateway gateway;
+    private final AvatarsGateway gateway;
     private final AvatarUseCaseOutput presenter;
 
     public GetAvatars(UseCaseScheduler useCaseScheduler,
-                      AvatarGateway gateway,
+                      AvatarsGateway gateway,
                       AvatarUseCaseOutput presenter) {
         super(useCaseScheduler);
         this.gateway = gateway;
@@ -24,7 +24,7 @@ public class GetAvatars extends UseCase<Void, List<Avatar>> {
 
     @Override
     protected void executeUseCase(Void aVoid) {
-        List<Avatar> characters = gateway.loadCharacters();
+        List<Avatar> characters = gateway.loadAvatars();
 
         if(characters.isEmpty()) {
             submitResponse(Response.error("No characters"));

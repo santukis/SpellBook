@@ -20,8 +20,4 @@ public class SpellsPresenter implements SpellsUseCaseOutput {
         view.showSpells(spells);
     }
 
-    @Override
-    public void showError(String error) {
-
-    }
 }

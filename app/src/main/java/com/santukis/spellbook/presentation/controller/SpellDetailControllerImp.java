@@ -11,11 +11,14 @@ public class SpellDetailControllerImp implements SpellDetailController {
 
     private final UseCase<Void, Spell> getSpell;
     private final UseCase<Void, List<Avatar>> getAvatars;
+    private final UseCase<List<String>, Boolean> saveSpell;
 
     public SpellDetailControllerImp(UseCase<Void, Spell> getSpell,
-                                    UseCase<Void, List<Avatar>> getAvatars) {
+                                    UseCase<Void, List<Avatar>> getAvatars,
+                                    UseCase<List<String>, Boolean> saveSpell) {
         this.getSpell = getSpell;
         this.getAvatars = getAvatars;
+        this.saveSpell = saveSpell;
     }
 
     @Override
@@ -26,5 +29,10 @@ public class SpellDetailControllerImp implements SpellDetailController {
     @Override
     public void loadAvatars() {
         getAvatars.execute(null);
+    }
+
+    @Override
+    public void saveSpellTo(List<String> avatarsName) {
+        saveSpell.execute(avatarsName);
     }
 }

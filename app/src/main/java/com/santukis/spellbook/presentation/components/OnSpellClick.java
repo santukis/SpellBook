@@ -1,4 +1,4 @@
-package com.santukis.spellbook.presentation.view;
+package com.santukis.spellbook.presentation.components;
 
 import com.santukis.spellbook.domain.model.Spell;
 

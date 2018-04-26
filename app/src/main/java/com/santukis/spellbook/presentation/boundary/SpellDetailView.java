@@ -3,7 +3,7 @@ package com.santukis.spellbook.presentation.boundary;
 
 import java.util.List;
 
-public interface SpellDetailView {
+public interface SpellDetailView extends BaseView {
 
     void showName(String name);
 
@@ -25,7 +25,7 @@ public interface SpellDetailView {
 
     void showHigherLevels(String description);
 
-    void showClasses(int classId);
+    void showProfessions(int classId);
 
     void setupColorViews(int color);
 

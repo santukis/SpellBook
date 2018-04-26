@@ -30,7 +30,7 @@ public class SpellDetailPresenter implements SpellDetailUseCaseOutput, AvatarUse
         showDuration(spell.getDuration());
         showDescription(spell.getDescription());
         showHigherLevels(spell.getHigherLevelsDescription());
-        showClasses(spell.getClasses());
+        showProfessions(spell.getProfessions());
         setupColorViews(spell.getSchool().getColor());
     }
 
@@ -45,9 +45,14 @@ public class SpellDetailPresenter implements SpellDetailUseCaseOutput, AvatarUse
     public void showAvatars(List<Avatar> avatars) {
         List<String> names = new ArrayList<>();
         for(Avatar avatar : avatars) {
-            names.add(avatar.getName());
+            names.add(avatar.getName().concat(" (").concat(avatar.getProfession().name().concat(")")));
         }
         view.showAvatars(names);
+    }
+
+    @Override
+    public void closeView() {
+        view.closeView();
     }
 
     private void showName(String name) {
@@ -107,10 +112,10 @@ public class SpellDetailPresenter implements SpellDetailUseCaseOutput, AvatarUse
         view.showHigherLevels(description);
     }
 
-    private void showClasses(List<Profession> classes) {
+    private void showProfessions(List<Profession> classes) {
 
         for(Profession profession : classes) {
-            view.showClasses(profession.getName());
+            view.showProfessions(profession.getName());
         }
     }
 

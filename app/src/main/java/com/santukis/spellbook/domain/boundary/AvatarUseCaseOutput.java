@@ -1,12 +1,13 @@
 package com.santukis.spellbook.domain.boundary;
 
 import com.santukis.spellbook.domain.model.Avatar;
+import com.santukis.spellbook.domain.model.Spell;
 
 import java.util.List;
 
-public interface AvatarUseCaseOutput {
+public interface AvatarUseCaseOutput extends UseCaseOutput {
 
-    void showAvatars(List<Avatar> characters);
+    void showAvatars(List<Avatar> avatars);
 
-    void showError(String error);
+    void showSpellsFromAvatar(List<Spell> spells);
 }

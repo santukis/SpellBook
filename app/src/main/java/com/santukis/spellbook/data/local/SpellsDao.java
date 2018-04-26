@@ -16,7 +16,7 @@ public interface SpellsDao {
     List<SpellEntity> getSpellsFrom(String name);
 
     @Insert
-    void insert(SpellEntity spell);
+    long insert(SpellEntity spell);
 
     @Delete
     void delete(SpellEntity spell);

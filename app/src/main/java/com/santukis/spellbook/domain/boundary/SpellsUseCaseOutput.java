@@ -4,9 +4,8 @@ import com.santukis.spellbook.domain.model.Spell;
 
 import java.util.List;
 
-public interface SpellsUseCaseOutput {
+public interface SpellsUseCaseOutput extends UseCaseOutput {
 
     void showSpells(List<Spell> spells);
 
-    void showError(String error);
 }

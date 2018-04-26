@@ -10,6 +10,7 @@ import android.widget.TextView;
 
 import com.santukis.spellbook.R;
 import com.santukis.spellbook.domain.model.Spell;
+import com.santukis.spellbook.presentation.components.OnSpellClick;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -45,11 +46,8 @@ public class SpellsAdapter extends RecyclerView.Adapter<SpellsAdapter.ViewHolder
         String level = String.valueOf(spell.getLevel());
         holder.levelView.setText(level.equals("0") ? "Truco" : "Nivel: " + level);
 
-        holder.itemView.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                onSpellClick.onClick(spell);
-            }
+        holder.itemView.setOnClickListener(v -> {
+            onSpellClick.onClick(spell);
         });
     }
 

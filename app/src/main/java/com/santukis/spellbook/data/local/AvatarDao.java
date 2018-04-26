@@ -16,7 +16,7 @@ public interface AvatarDao {
     List<AvatarEntity> getAvatars();
 
     @Insert
-    void insert(AvatarEntity character);
+    long insert(AvatarEntity character);
 
     @Delete
     void delete(AvatarEntity character);
