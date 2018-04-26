@@ -7,4 +7,5 @@ import java.util.List;
 public interface AvatarsView extends BaseView {
 
     void showAvatars(List<Avatar> avatars);
+
 }

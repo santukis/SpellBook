@@ -12,8 +12,11 @@ import android.view.ViewGroup;
 import com.santukis.spellbook.R;
 import com.santukis.spellbook.data.gateway.SpellsGatewayImp;
 import com.santukis.spellbook.domain.UseCaseDefaultScheduler;
+import com.santukis.spellbook.domain.UseCaseThreadPoolExecutor;
+import com.santukis.spellbook.domain.boundary.SpellsUseCaseOutput;
 import com.santukis.spellbook.domain.model.Spell;
 import com.santukis.spellbook.domain.usecase.CacheSpell;
+import com.santukis.spellbook.domain.usecase.GetAvatarSpells;
 import com.santukis.spellbook.domain.usecase.GetSpells;
 import com.santukis.spellbook.presentation.boundary.SpellsController;
 import com.santukis.spellbook.presentation.boundary.SpellsView;
@@ -29,6 +32,14 @@ public class SpellsListFragment extends Fragment implements OnSpellClick, Spells
     private SpellsController spellsController;
     private SpellsAdapter adapter;
 
+    public static SpellsListFragment newInstance(String avatar) {
+        SpellsListFragment fragment = new SpellsListFragment();
+        Bundle arguments = new Bundle();
+        arguments.putString("Avatar", avatar);
+        fragment.setArguments(arguments);
+        return fragment;
+    }
+
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, Bundle savedInstanceState) {
@@ -38,7 +49,13 @@ public class SpellsListFragment extends Fragment implements OnSpellClick, Spells
         initializeViewComponents(view);
 
         try {
-            spellsController.loadSpells(getResources().getAssets().open("spells.csv"));
+            if(getArguments() != null) {
+                String name = getArguments().getString("Avatar", "");
+                spellsController.loadSpells(name);
+
+            } else {
+                spellsController.loadSpells(getResources().getAssets().open("spells.csv"));
+            }
 
         } catch (IOException e) {
             e.printStackTrace();
@@ -48,8 +65,10 @@ public class SpellsListFragment extends Fragment implements OnSpellClick, Spells
     }
 
     private void initializeViewComponents(View view) {
+        SpellsUseCaseOutput presenter = new SpellsPresenter(this);
         spellsController = new SpellsControllerImp(
-                new GetSpells(UseCaseDefaultScheduler.getInstance(), SpellsGatewayImp.getInstance(getActivity()), new SpellsPresenter(this)),
+                new GetSpells(UseCaseDefaultScheduler.getInstance(), SpellsGatewayImp.getInstance(getActivity()), presenter),
+                new GetAvatarSpells(UseCaseThreadPoolExecutor.getInstance(), SpellsGatewayImp.getInstance(getActivity()), presenter),
                 new CacheSpell(UseCaseDefaultScheduler.getInstance(), SpellsGatewayImp.getInstance(getActivity())));
 
         RecyclerView recyclerView = view.findViewById(R.id.rv_spells);

@@ -4,5 +4,4 @@ public interface AvatarsController {
 
     void loadAvatars();
 
-    void loadSpellsFromAvatar(String name);
 }

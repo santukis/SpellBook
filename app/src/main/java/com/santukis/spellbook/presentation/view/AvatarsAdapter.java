@@ -6,6 +6,7 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -48,7 +49,7 @@ public class AvatarsAdapter extends RecyclerView.Adapter<AvatarsAdapter.ViewHold
         holder.professionImage.setBackgroundResource(avatar.getProfession().getImage());
 
 
-        holder.itemView.setOnClickListener(v -> {
+        holder.spellsButton.setOnClickListener(v -> {
             onAvatarClick.onClick(avatar);
         });
     }
@@ -69,7 +70,7 @@ public class AvatarsAdapter extends RecyclerView.Adapter<AvatarsAdapter.ViewHold
         private TextView nameView;
         private ImageView professionImage;
         private TextView professionView;
-        private TextView spells;
+        private ImageButton spellsButton;
 
         ViewHolder(View itemView) {
             super(itemView);
@@ -77,7 +78,7 @@ public class AvatarsAdapter extends RecyclerView.Adapter<AvatarsAdapter.ViewHold
             nameView = itemView.findViewById(R.id.tv_name);
             professionImage = itemView.findViewById(R.id.iv_profession);
             professionView = itemView.findViewById(R.id.tv_profession);
-            spells = itemView.findViewById(R.id.tv_spells);
+            spellsButton = itemView.findViewById(R.id.bt_spells);
         }
     }
 }

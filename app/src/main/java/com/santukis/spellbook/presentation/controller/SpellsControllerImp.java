@@ -11,11 +11,14 @@ public class SpellsControllerImp implements SpellsController{
 
 
     private final UseCase<InputStream, List<Spell>> getSpells;
+    private final UseCase<String, List<Spell>> getAvatarSpells;
     private final UseCase<Spell, Void> cacheSpell;
 
     public SpellsControllerImp(UseCase<InputStream, List<Spell>> getSpells,
+                               UseCase<String, List<Spell>> getAvatarSpells,
                                UseCase<Spell, Void> cacheSpell) {
         this.getSpells = getSpells;
+        this.getAvatarSpells = getAvatarSpells;
         this.cacheSpell = cacheSpell;
     }
 
@@ -23,6 +26,11 @@ public class SpellsControllerImp implements SpellsController{
     @Override
     public void loadSpells(InputStream stream) {
         getSpells.execute(stream);
+    }
+
+    @Override
+    public void loadSpells(String name) {
+        getAvatarSpells.execute(name);
     }
 
     @Override

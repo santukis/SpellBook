@@ -9,6 +9,8 @@ public interface SpellsGateway {
 
     List<Spell> loadSpells(InputStream stream);
 
+    List<Spell> loadAvatarSpells(String avatarName);
+
     Spell loadSpell();
 
     void cacheSpell(Spell spell);

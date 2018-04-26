@@ -4,6 +4,7 @@ import android.content.Context;
 
 import com.santukis.spellbook.data.local.SpellsDatabase;
 import com.santukis.spellbook.data.mapper.SpellMapper;
+import com.santukis.spellbook.data.model.SpellEntity;
 import com.santukis.spellbook.domain.boundary.SpellsGateway;
 import com.santukis.spellbook.domain.model.Spell;
 
@@ -63,6 +64,12 @@ public class SpellsGatewayImp implements SpellsGateway {
     @Override
     public Spell loadSpell() {
         return cachedSpell;
+    }
+
+    @Override
+    public List<Spell> loadAvatarSpells(String avatarName) {
+        List<SpellEntity> entities = database.spellsDao().getSpellsFrom(avatarName);
+        return SpellMapper.map(entities);
     }
 
     @Override

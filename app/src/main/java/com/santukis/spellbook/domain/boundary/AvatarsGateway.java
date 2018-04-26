@@ -10,6 +10,4 @@ public interface AvatarsGateway {
     List<Avatar> loadAvatars();
 
     boolean saveAvatar(Avatar avatar);
-
-    List<Spell> loadAvatarSpells(String avatarName);
 }

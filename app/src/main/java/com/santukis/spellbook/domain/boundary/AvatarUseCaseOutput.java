@@ -8,6 +8,4 @@ import java.util.List;
 public interface AvatarUseCaseOutput extends UseCaseOutput {
 
     void showAvatars(List<Avatar> avatars);
-
-    void showSpellsFromAvatar(List<Spell> spells);
 }

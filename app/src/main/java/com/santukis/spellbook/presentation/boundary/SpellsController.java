@@ -8,5 +8,7 @@ public interface SpellsController {
 
     void loadSpells(InputStream stream);
 
+    void loadSpells(String name);
+
     void cacheSpell(Spell spell);
 }

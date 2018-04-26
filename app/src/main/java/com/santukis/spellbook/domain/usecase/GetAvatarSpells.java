@@ -3,21 +3,21 @@ package com.santukis.spellbook.domain.usecase;
 import com.santukis.spellbook.domain.Response;
 import com.santukis.spellbook.domain.UseCase;
 import com.santukis.spellbook.domain.UseCaseScheduler;
-import com.santukis.spellbook.domain.boundary.AvatarUseCaseOutput;
-import com.santukis.spellbook.domain.boundary.AvatarsGateway;
+import com.santukis.spellbook.domain.boundary.SpellsGateway;
+import com.santukis.spellbook.domain.boundary.SpellsUseCaseOutput;
 import com.santukis.spellbook.domain.model.Spell;
 
 import java.util.List;
 
 public class GetAvatarSpells extends UseCase<String, List<Spell>> {
 
-    private final AvatarsGateway gateway;
-    private final AvatarUseCaseOutput presenter;
+    private final SpellsGateway gateway;
+    private final SpellsUseCaseOutput presenter;
 
 
     public GetAvatarSpells(UseCaseScheduler useCaseScheduler,
-                           AvatarsGateway gateway,
-                           AvatarUseCaseOutput presenter) {
+                           SpellsGateway gateway,
+                           SpellsUseCaseOutput presenter) {
         super(useCaseScheduler);
         this.gateway = gateway;
         this.presenter = presenter;
@@ -39,7 +39,7 @@ public class GetAvatarSpells extends UseCase<String, List<Spell>> {
     protected void onResponse(Response<List<Spell>> response) {
 
         if(response.isSuccessful()) {
-            presenter.showSpellsFromAvatar(response.getBody());
+            presenter.showSpells(response.getBody());
 
         } else {
             presenter.showError(response.getError());

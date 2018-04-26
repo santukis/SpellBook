@@ -19,5 +19,4 @@ public class SpellsPresenter implements SpellsUseCaseOutput {
     public void showSpells(List<Spell> spells) {
         view.showSpells(spells);
     }
-
 }

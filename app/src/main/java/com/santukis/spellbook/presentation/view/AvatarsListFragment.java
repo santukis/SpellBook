@@ -13,13 +13,13 @@ import com.santukis.spellbook.R;
 import com.santukis.spellbook.data.gateway.AvatarsGatewayImp;
 import com.santukis.spellbook.domain.UseCaseThreadPoolExecutor;
 import com.santukis.spellbook.domain.model.Avatar;
-import com.santukis.spellbook.domain.usecase.GetAvatarSpells;
 import com.santukis.spellbook.domain.usecase.GetAvatars;
 import com.santukis.spellbook.presentation.boundary.AvatarsController;
 import com.santukis.spellbook.presentation.boundary.AvatarsView;
 import com.santukis.spellbook.presentation.components.OnAvatarClick;
 import com.santukis.spellbook.presentation.controller.AvatarsControllerImp;
 import com.santukis.spellbook.presentation.presenter.AvatarsPresenter;
+import com.santukis.spellbook.presentation.presenter.SpellDetailPresenter;
 
 import java.util.List;
 
@@ -43,8 +43,7 @@ public class AvatarsListFragment extends Fragment implements OnAvatarClick, Avat
     private void initializeViewComponents(View view) {
         AvatarsPresenter presenter = new AvatarsPresenter(this);
         controller = new AvatarsControllerImp(
-                new GetAvatars(UseCaseThreadPoolExecutor.getInstance(), AvatarsGatewayImp.getInstance(getActivity()), presenter),
-                new GetAvatarSpells(UseCaseThreadPoolExecutor.getInstance(), AvatarsGatewayImp.getInstance(getActivity()), presenter));
+                new GetAvatars(UseCaseThreadPoolExecutor.getInstance(), AvatarsGatewayImp.getInstance(getActivity()), presenter));
 
         RecyclerView recyclerView = view.findViewById(R.id.rv_spells);
         adapter = new AvatarsAdapter(getActivity());
@@ -55,11 +54,12 @@ public class AvatarsListFragment extends Fragment implements OnAvatarClick, Avat
 
     @Override
     public void onClick(Avatar avatar) {
-        controller.loadSpellsFromAvatar(avatar.getName());
+        ((MainActivity) getActivity()).openView(SpellsListFragment.newInstance(avatar.getName()));
     }
 
     @Override
     public void showAvatars(List<Avatar> avatars) {
         adapter.updateAvatars(avatars);
     }
+
 }
