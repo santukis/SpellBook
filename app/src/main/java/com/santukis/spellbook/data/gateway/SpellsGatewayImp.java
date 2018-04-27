@@ -18,6 +18,7 @@ import java.util.List;
 public class SpellsGatewayImp implements SpellsGateway {
 
     private static SpellsGatewayImp INSTANCE = null;
+
     private Spell cachedSpell = Spell.EMPTY_SPELL;
     private SpellsDatabase database;
 
@@ -76,5 +77,11 @@ public class SpellsGatewayImp implements SpellsGateway {
     public boolean saveSpell(String avatarName) {
         long insertedSpell = database.spellsDao().insert(SpellMapper.map(cachedSpell, avatarName));
         return insertedSpell != 0;
+    }
+
+    @Override
+    public boolean deleteSpell(Spell spell) {
+        database.spellsDao().delete(SpellMapper.map(spell));
+        return true;
     }
 }

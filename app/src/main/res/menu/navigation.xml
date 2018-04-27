@@ -11,4 +11,9 @@
         android:icon="@drawable/ic_avatars"
         android:title="@string/show_avatars" />
 
+    <item
+        android:id="@+id/navigation_show_spells"
+        android:icon="@drawable/speel_book"
+        android:title="@string/spells"/>
+
 </menu>

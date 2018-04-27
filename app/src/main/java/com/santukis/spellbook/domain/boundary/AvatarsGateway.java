@@ -10,4 +10,6 @@ public interface AvatarsGateway {
     List<Avatar> loadAvatars();
 
     boolean saveAvatar(Avatar avatar);
+
+    boolean deleteAvatar(Avatar avatar);
 }

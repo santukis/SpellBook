@@ -37,4 +37,10 @@ public class AvatarsGatewayImp implements AvatarsGateway {
         long insertedId = database.avatarDao().insert(AvatarMapper.map(avatar));
         return insertedId != 0;
     }
+
+    @Override
+    public boolean deleteAvatar(Avatar avatar) {
+        database.avatarDao().delete(AvatarMapper.map(avatar));
+        return true;
+    }
 }

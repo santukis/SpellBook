@@ -14,6 +14,7 @@ public class AvatarMapper {
 
         for(AvatarEntity entity : entities) {
             Avatar avatar = new Avatar(entity.getName(), Profession.valueOf(entity.getProfession()));
+            avatar.setId(entity.getId());
             avatars.add(avatar);
         }
 
@@ -22,6 +23,7 @@ public class AvatarMapper {
 
     public static AvatarEntity map(Avatar avatar) {
         AvatarEntity entity = new AvatarEntity();
+        entity.setId(avatar.getId());
         entity.setName(avatar.getName());
         entity.setProfession(avatar.getProfession().name());
         return entity;

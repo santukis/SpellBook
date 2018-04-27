@@ -1,4 +1,4 @@
-package com.santukis.spellbook.presentation.view;
+package com.santukis.spellbook.presentation.adapters;
 
 import android.content.Context;
 import android.support.annotation.NonNull;
@@ -10,12 +10,14 @@ import android.widget.TextView;
 
 import com.santukis.spellbook.R;
 import com.santukis.spellbook.domain.model.Spell;
-import com.santukis.spellbook.presentation.components.OnSpellClick;
+import com.santukis.spellbook.presentation.components.click.OnSpellClick;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Observable;
+import java.util.Observer;
 
-public class SpellsAdapter extends RecyclerView.Adapter<SpellsAdapter.ViewHolder> {
+public class SpellsAdapter extends RecyclerView.Adapter<SpellsAdapter.ViewHolder> implements Observer{
 
     private Context context;
     private List<Spell> spells = new ArrayList<>();
@@ -42,7 +44,8 @@ public class SpellsAdapter extends RecyclerView.Adapter<SpellsAdapter.ViewHolder
         final Spell spell = spells.get(position);
 
         holder.nameView.setText(spell.getName());
-        holder.schoolView.setText(spell.getSchool().name());
+        holder.schoolView.setText(spell.getSchool().getName());
+        holder.schoolView.setTextColor(context.getResources().getColor(spell.getSchool().getColor()));
         String level = String.valueOf(spell.getLevel());
         holder.levelView.setText(level.equals("0") ? "Truco" : "Nivel: " + level);
 
@@ -56,13 +59,42 @@ public class SpellsAdapter extends RecyclerView.Adapter<SpellsAdapter.ViewHolder
         return spells.size();
     }
 
+    public Spell getSpell(int position) {
+        return spells.get(position);
+    }
+
     public void updateSpells(List<Spell> spells) {
         this.spells.clear();
         this.spells.addAll(spells);
         notifyDataSetChanged();
     }
 
-    static class ViewHolder extends RecyclerView.ViewHolder {
+    public void removeSpell(int position) {
+        spells.remove(position);
+        notifyItemRemoved(position);
+    }
+
+    @Override
+    public void update(Observable o, Object arg) {
+        if(arg instanceof List<?>) {
+            List<String> words = (List<String>) arg;
+            List<Spell> spellsFound = new ArrayList<>();
+
+            for(String word : words) {
+                word = word.toLowerCase();
+
+                for(Spell spell : spells) {
+                    if(spell.getName().toLowerCase().contains(word)) {
+                        spellsFound.add(spell);
+                    }
+                }
+            }
+
+            updateSpells(spellsFound);
+        }
+    }
+
+    static class ViewHolder extends BaseViewHolder {
 
         private TextView nameView;
         private TextView schoolView;

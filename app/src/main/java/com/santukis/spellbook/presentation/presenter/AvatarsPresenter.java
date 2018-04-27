@@ -16,6 +16,12 @@ public class AvatarsPresenter implements AvatarUseCaseOutput {
 
     @Override
     public void showAvatars(List<Avatar> avatars) {
+        view.hideMessage();
         view.showAvatars(avatars);
+    }
+
+    @Override
+    public void showError(String error) {
+        view.showMessage();
     }
 }

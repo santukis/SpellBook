@@ -17,6 +17,13 @@ public class SpellsPresenter implements SpellsUseCaseOutput {
 
     @Override
     public void showSpells(List<Spell> spells) {
+        view.hideMessage();
         view.showSpells(spells);
+    }
+
+
+    @Override
+    public void showError(String error) {
+        view.showMessage();
     }
 }

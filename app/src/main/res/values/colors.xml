@@ -1,16 +1,16 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="colorPrimary">#656566</color>
-    <color name="colorPrimaryDark">#313131</color>
-    <color name="colorAccent">#FF4081</color>
+    <color name="colorPrimary">#007cc4</color>
+    <color name="colorPrimaryDark">#004466</color>
+    <color name="colorAccent">#01b628</color>
 
     <color name="none">#9f9f9f</color>
-    <color name="enchantment">#900033</color>
-    <color name="evocation">#cc1133</color>
-    <color name="abjuration">#cc6633</color>
-    <color name="divination">#ccbb33</color>
-    <color name="illusion">#005533</color>
-    <color name="necromancy">#009966</color>
-    <color name="transmutation">#00ccaa</color>
-    <color name="conjuration">#00aaee</color>
+    <color name="enchantment">#004477</color>
+    <color name="evocation">#005588</color>
+    <color name="abjuration">#006699</color>
+    <color name="divination">#0077aa</color>
+    <color name="illusion">#0088bb</color>
+    <color name="necromancy">#0099aa</color>
+    <color name="transmutation">#008899</color>
+    <color name="conjuration">#007788</color>
 </resources>

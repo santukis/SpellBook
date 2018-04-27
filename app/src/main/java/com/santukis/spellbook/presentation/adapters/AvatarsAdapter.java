@@ -1,4 +1,4 @@
-package com.santukis.spellbook.presentation.view;
+package com.santukis.spellbook.presentation.adapters;
 
 import android.content.Context;
 import android.support.annotation.NonNull;
@@ -12,8 +12,7 @@ import android.widget.TextView;
 
 import com.santukis.spellbook.R;
 import com.santukis.spellbook.domain.model.Avatar;
-import com.santukis.spellbook.presentation.components.OnAvatarClick;
-import com.santukis.spellbook.presentation.components.OnSpellClick;
+import com.santukis.spellbook.presentation.components.click.OnAvatarClick;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -59,13 +58,22 @@ public class AvatarsAdapter extends RecyclerView.Adapter<AvatarsAdapter.ViewHold
         return avatars.size();
     }
 
+    public Avatar getAvatar(int position) {
+        return avatars.get(position);
+    }
+
     public void updateAvatars(List<Avatar> spells) {
         this.avatars.clear();
         this.avatars.addAll(spells);
         notifyDataSetChanged();
     }
 
-    static class ViewHolder extends RecyclerView.ViewHolder {
+    public void removeAvatar(int position) {
+        avatars.remove(position);
+        notifyItemRemoved(position);
+    }
+
+    static class ViewHolder extends BaseViewHolder {
 
         private TextView nameView;
         private ImageView professionImage;

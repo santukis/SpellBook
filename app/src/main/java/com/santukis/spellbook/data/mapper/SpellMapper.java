@@ -18,21 +18,21 @@ public class SpellMapper {
 
         try {
             spell = new Spell.Builder()
-                    .withNane(tokens[1])
-                    .withDescription(tokens[2])
-                    .atHigherLevels(tokens[3])
-                    .withRange(Integer.valueOf(tokens[4]))
-                    .hasVerbalComponent(tokens[5].equals("1"))
-                    .hasSomaticComponent(tokens[6].equals("1"))
-                    .hasMaterialComponent(tokens[7].equals("1"))
-                    .withComponentDescription(tokens[8])
-                    .isRitual(tokens[9].equals("1"))
-                    .needsConcentration(tokens[10].equals("1"))
-                    .withCastingTime(tokens[11])
-                    .withSchool(School.values()[Integer.valueOf(tokens[12])])
-                    .withLevel(Integer.valueOf(tokens[13]))
-                    .withDuration(tokens[14])
-                    .forProfessions(professionMap(tokens[15]))
+                    .withNane(tokens[0])
+                    .withDescription(tokens[1])
+                    .atHigherLevels(tokens[2])
+                    .withRange(Integer.valueOf(tokens[3]))
+                    .hasVerbalComponent(tokens[4].equals("1"))
+                    .hasSomaticComponent(tokens[5].equals("1"))
+                    .hasMaterialComponent(tokens[6].equals("1"))
+                    .withComponentDescription(tokens[7])
+                    .isRitual(tokens[8].equals("1"))
+                    .needsConcentration(tokens[9].equals("1"))
+                    .withCastingTime(tokens[10])
+                    .withSchool(School.values()[Integer.valueOf(tokens[11])])
+                    .withLevel(Integer.valueOf(tokens[12]))
+                    .withDuration(tokens[13])
+                    .forProfessions(professionMap(tokens[14]))
                     .build();
             return spell;
 
@@ -40,27 +40,6 @@ public class SpellMapper {
             Log.e("SPELL ERROR", exception.getMessage());
             return spell;
         }
-    }
-
-    public static SpellEntity map(Spell spell, String avatarName) {
-        SpellEntity entity = new SpellEntity();
-        entity.setName(spell.getName());
-        entity.setAvatarName(avatarName);
-        entity.setDescription(spell.getDescription());
-        entity.setAtHigherLevels(spell.getHigherLevelsDescription());
-        entity.setRange(spell.getRange());
-        entity.setVerbalComponent(spell.isVerbalComponent());
-        entity.setSomaticComponent(spell.isSomaticComponent());
-        entity.setMaterialComponent(spell.isMaterialComponent());
-        entity.setComponentDescription(spell.getComponentDescription());
-        entity.setRitual(spell.isRitual());
-        entity.setConcentration(spell.isConcentrated());
-        entity.setCastingTime(spell.getCastingTime());
-        entity.setSchool(spell.getSchool().name());
-        entity.setLevel(spell.getLevel());
-        entity.setDuration(spell.getDuration());
-        entity.setProfessions(professionMap(spell.getProfessions()));
-        return entity;
     }
 
     public static List<Spell> map(List<SpellEntity> entities) {
@@ -87,6 +66,47 @@ public class SpellMapper {
             spells.add(spell);
         }
         return spells;
+    }
+
+    public static SpellEntity map(Spell spell, String avatarName) {
+        SpellEntity entity = new SpellEntity();
+        entity.setName(spell.getName());
+        entity.setAvatarName(avatarName);
+        entity.setDescription(spell.getDescription());
+        entity.setAtHigherLevels(spell.getHigherLevelsDescription());
+        entity.setRange(spell.getRange());
+        entity.setVerbalComponent(spell.isVerbalComponent());
+        entity.setSomaticComponent(spell.isSomaticComponent());
+        entity.setMaterialComponent(spell.isMaterialComponent());
+        entity.setComponentDescription(spell.getComponentDescription());
+        entity.setRitual(spell.isRitual());
+        entity.setConcentration(spell.isConcentrated());
+        entity.setCastingTime(spell.getCastingTime());
+        entity.setSchool(spell.getSchool().name());
+        entity.setLevel(spell.getLevel());
+        entity.setDuration(spell.getDuration());
+        entity.setProfessions(professionMap(spell.getProfessions()));
+        return entity;
+    }
+
+    public static SpellEntity map(Spell spell) {
+        SpellEntity entity = new SpellEntity();
+        entity.setName(spell.getName());
+        entity.setDescription(spell.getDescription());
+        entity.setAtHigherLevels(spell.getHigherLevelsDescription());
+        entity.setRange(spell.getRange());
+        entity.setVerbalComponent(spell.isVerbalComponent());
+        entity.setSomaticComponent(spell.isSomaticComponent());
+        entity.setMaterialComponent(spell.isMaterialComponent());
+        entity.setComponentDescription(spell.getComponentDescription());
+        entity.setRitual(spell.isRitual());
+        entity.setConcentration(spell.isConcentrated());
+        entity.setCastingTime(spell.getCastingTime());
+        entity.setSchool(spell.getSchool().name());
+        entity.setLevel(spell.getLevel());
+        entity.setDuration(spell.getDuration());
+        entity.setProfessions(professionMap(spell.getProfessions()));
+        return entity;
     }
 
     private static List<Profession> professionMap(String text) {

@@ -11,4 +11,6 @@ public interface SpellsController {
     void loadSpells(String name);
 
     void cacheSpell(Spell spell);
+
+    void deleteSpell(Spell spell);
 }

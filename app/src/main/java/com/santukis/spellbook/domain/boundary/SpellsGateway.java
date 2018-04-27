@@ -17,4 +17,6 @@ public interface SpellsGateway {
 
     boolean saveSpell(String avatarName);
 
+    boolean deleteSpell(Spell spell);
+
 }
