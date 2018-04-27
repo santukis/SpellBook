@@ -81,7 +81,7 @@ public class SpellsGatewayImp implements SpellsGateway {
 
     @Override
     public boolean deleteSpell(Spell spell) {
-        database.spellsDao().delete(SpellMapper.map(spell));
+        database.spellsDao().delete(SpellMapper.map(spell, ""));
         return true;
     }
 }

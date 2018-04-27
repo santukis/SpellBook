@@ -89,26 +89,6 @@ public class SpellMapper {
         return entity;
     }
 
-    public static SpellEntity map(Spell spell) {
-        SpellEntity entity = new SpellEntity();
-        entity.setName(spell.getName());
-        entity.setDescription(spell.getDescription());
-        entity.setAtHigherLevels(spell.getHigherLevelsDescription());
-        entity.setRange(spell.getRange());
-        entity.setVerbalComponent(spell.isVerbalComponent());
-        entity.setSomaticComponent(spell.isSomaticComponent());
-        entity.setMaterialComponent(spell.isMaterialComponent());
-        entity.setComponentDescription(spell.getComponentDescription());
-        entity.setRitual(spell.isRitual());
-        entity.setConcentration(spell.isConcentrated());
-        entity.setCastingTime(spell.getCastingTime());
-        entity.setSchool(spell.getSchool().name());
-        entity.setLevel(spell.getLevel());
-        entity.setDuration(spell.getDuration());
-        entity.setProfessions(professionMap(spell.getProfessions()));
-        return entity;
-    }
-
     private static List<Profession> professionMap(String text) {
         List<Profession> classes = new ArrayList<>();
         String[] tokens = text.split(",");
