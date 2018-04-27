@@ -55,6 +55,9 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
             case R.id.navigation_show_spells:
                 openView(new SpellsListFragment());
                 break;
+            case R.id.navigation_show_preferences:
+                openView(new SettingsFragment());
+                break;
         }
         navigationDrawer.closeDrawer(GravityCompat.START);
         return true;

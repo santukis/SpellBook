@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="utf-8"?>
+<PreferenceScreen
+    xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <PreferenceCategory
+        android:title="@string/search">
+
+        <PreferenceScreen
+            android:title="@string/school"
+            android:summary="@string/school_message">
+
+            <SwitchPreference
+                android:key="ABJURATION"
+                android:title="@string/abjuration"
+                android:defaultValue="true"
+                android:persistent="true"/>
+
+            <SwitchPreference
+                android:key="DIVINATION"
+                android:title="@string/divination"
+                android:defaultValue="true"
+                android:persistent="true"/>
+
+            <SwitchPreference
+                android:key="CONJURATION"
+                android:title="@string/conjuration"
+                android:defaultValue="true"
+                android:persistent="true"/>
+
+            <SwitchPreference
+                android:key="ENCHANTMENT"
+                android:title="@string/enchantment"
+                android:defaultValue="true"
+                android:persistent="true"/>
+
+            <SwitchPreference
+                android:key="EVOCATION"
+                android:title="@string/evocation"
+                android:defaultValue="true"
+                android:persistent="true"/>
+
+            <SwitchPreference
+                android:key="ILLUSION"
+                android:title="@string/illusion"
+                android:defaultValue="true"
+                android:persistent="true"/>
+
+            <SwitchPreference
+                android:key="NECROMANCY"
+                android:title="@string/necromancy"
+                android:defaultValue="true"
+                android:persistent="true"/>
+
+            <SwitchPreference
+                android:key="TRANSMUTATION"
+                android:title="@string/transmutation"
+                android:defaultValue="true"
+                android:persistent="true"/>
+
+        </PreferenceScreen>
+
+    </PreferenceCategory>
+
+</PreferenceScreen>

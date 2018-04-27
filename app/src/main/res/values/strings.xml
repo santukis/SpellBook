@@ -44,5 +44,11 @@
     <string name="characters">Personajes</string>
     <string name="no_spells_message">Este personaje no tiene hechizos</string>
     <string name="delete">Borrar</string>
+    <string name="filter">Filtro</string>
+    <string name="search">Búsqueda</string>
+    <string name="school">Escuelas de magía</string>
+    <string name="class_filter_message">Filtrar los hechizos por clases</string>
+    <string name="school_message">Filtrar los hechizos por escuelas de magía</string>
+    <string name="preferences">Preferencias</string>
 
 </resources>

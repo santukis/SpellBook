@@ -2,7 +2,6 @@ package com.santukis.spellbook.domain.usecase;
 
 import com.santukis.spellbook.domain.Response;
 import com.santukis.spellbook.domain.UseCase;
-import com.santukis.spellbook.domain.UseCaseDefaultScheduler;
 import com.santukis.spellbook.domain.UseCaseScheduler;
 import com.santukis.spellbook.domain.boundary.SpellsGateway;
 import com.santukis.spellbook.domain.boundary.SpellsUseCaseOutput;
@@ -21,7 +20,6 @@ public class GetSpells extends UseCase<InputStream, List<Spell>> {
         this.gateway = gateway;
         this.presenter = presenter;
     }
-
 
     @Override
     protected void executeUseCase(InputStream stream) {

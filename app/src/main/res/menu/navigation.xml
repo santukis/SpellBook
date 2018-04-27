@@ -16,4 +16,9 @@
         android:icon="@drawable/speel_book"
         android:title="@string/spells"/>
 
+    <item
+        android:id="@+id/navigation_show_preferences"
+        android:icon="@android:drawable/ic_menu_preferences"
+        android:title="@string/preferences"/>
+
 </menu>

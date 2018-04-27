@@ -2,6 +2,7 @@ package com.santukis.spellbook.data.gateway;
 
 import android.content.Context;
 
+import com.santukis.spellbook.data.filter.SchoolFilter;
 import com.santukis.spellbook.data.local.SpellsDatabase;
 import com.santukis.spellbook.data.mapper.SpellMapper;
 import com.santukis.spellbook.data.model.SpellEntity;
@@ -20,10 +21,13 @@ public class SpellsGatewayImp implements SpellsGateway {
     private static SpellsGatewayImp INSTANCE = null;
 
     private Spell cachedSpell = Spell.EMPTY_SPELL;
+
+    private SettingsGatewayImp preferences;
     private SpellsDatabase database;
 
     private SpellsGatewayImp(Context context) {
         database = SpellsDatabase.getDatabase(context);
+        preferences = SettingsGatewayImp.getInstance(context);
     }
 
     public static SpellsGatewayImp getInstance(Context context) {
@@ -46,6 +50,8 @@ public class SpellsGatewayImp implements SpellsGateway {
                 Spell spell = SpellMapper.map(csv);
                 spells.add(spell);
             }
+
+            spells = SchoolFilter.filter(spells, preferences.getFilters());
 
             stream.close();
 
