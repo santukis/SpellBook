@@ -10,11 +10,14 @@ public class AvatarsControllerImp implements AvatarsController {
 
     private final UseCase<Void, List<Avatar>> getAvatars;
     private final UseCase<Avatar, Boolean> deleteAvatar;
+    private final UseCase<Avatar, Boolean> saveAvatar;
 
     public AvatarsControllerImp(UseCase<Void, List<Avatar>> getAvatars,
-                                UseCase<Avatar, Boolean> deleteAvatar) {
+                                UseCase<Avatar, Boolean> deleteAvatar,
+                                UseCase<Avatar, Boolean> saveAvatar) {
         this.getAvatars = getAvatars;
         this.deleteAvatar = deleteAvatar;
+        this.saveAvatar = saveAvatar;
     }
 
 
@@ -26,5 +29,10 @@ public class AvatarsControllerImp implements AvatarsController {
     @Override
     public void deleteAvatar(Avatar avatar) {
         deleteAvatar.execute(avatar);
+    }
+
+    @Override
+    public void saveAvatar(Avatar avatar) {
+        saveAvatar.execute(avatar);
     }
 }

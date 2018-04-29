@@ -189,7 +189,7 @@ public class SpellDetailFragment extends Fragment implements SpellDetailView {
 
     @Override
     public void showDescription(String description) {
-        description = "<html><head><style>body {color:#444444; line-height: 22px} br {display: block; content: \"\"; margin-top: 10px;}</style></head><body align=\"justify\";>"
+        description = "<html><head><style>body {color:#444444; line-height: 22px}</style></head><body align=\"justify\";>"
                 .concat(description)
                 .concat("</body></html>");
         descriptionView.loadDataWithBaseURL(null, description, "text/html", "ISO-8859-1", null);
@@ -202,7 +202,7 @@ public class SpellDetailFragment extends Fragment implements SpellDetailView {
             higherLevelsTitleView.setVisibility(View.GONE);
 
         } else {
-            description = ("<html><head><style>body {color:#444444; line-height: 22px} br {display: block; content: \"\"; margin-top: 10px;}</style></head><body align=\"justify\";>")
+            description = ("<html><head><style>body {color:#444444; line-height: 22px}</style></head><body align=\"justify\";>")
                     .concat(description)
                     .concat("</body></html>");
             higherLevelsView.loadDataWithBaseURL(null, description, "text/html", "ISO-8859-1", null);

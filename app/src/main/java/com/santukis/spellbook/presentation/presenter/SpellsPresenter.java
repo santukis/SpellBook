@@ -26,4 +26,9 @@ public class SpellsPresenter implements SpellsUseCaseOutput {
     public void showError(String error) {
         view.showMessage();
     }
+
+    @Override
+    public void notifyDataHasChanged() {
+        view.updateData();
+    }
 }

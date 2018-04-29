@@ -1,14 +1,16 @@
 package com.santukis.spellbook.presentation.view;
 
+import android.app.AlertDialog;
 import android.app.Fragment;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.support.design.widget.FloatingActionButton;
+import android.support.design.widget.Snackbar;
 import android.support.v7.widget.DefaultItemAnimator;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.SearchView;
 import android.support.v7.widget.helper.ItemTouchHelper;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -27,6 +29,7 @@ import com.santukis.spellbook.domain.usecase.CacheSpell;
 import com.santukis.spellbook.domain.usecase.DeleteSpell;
 import com.santukis.spellbook.domain.usecase.GetAvatarSpells;
 import com.santukis.spellbook.domain.usecase.GetSpells;
+import com.santukis.spellbook.domain.usecase.SortBy;
 import com.santukis.spellbook.presentation.adapters.BaseViewHolder;
 import com.santukis.spellbook.presentation.adapters.SpellsAdapter;
 import com.santukis.spellbook.presentation.boundary.SpellsController;
@@ -43,7 +46,10 @@ import java.util.List;
 public class SpellsListFragment extends Fragment implements OnSpellClick, SpellsView,
         RecyclerItemTouchHelper.RecyclerItemTouchHelperListener{
 
+    private View view;
     private TextView messageView;
+    private FloatingActionButton filterButton;
+
     private SpellsController controller;
     private SpellsAdapter adapter;
 
@@ -59,9 +65,10 @@ public class SpellsListFragment extends Fragment implements OnSpellClick, Spells
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, Bundle savedInstanceState) {
 
-        View view = inflater.inflate(R.layout.fragment_lists, container, false);
+        view = inflater.inflate(R.layout.fragment_lists, container, false);
 
         initializeViewComponents(view);
+        initializeViewListeners();
 
         loadSpells();
 
@@ -76,9 +83,12 @@ public class SpellsListFragment extends Fragment implements OnSpellClick, Spells
                 new GetSpells(UseCaseDefaultScheduler.getInstance(), SpellsGatewayImp.getInstance(getActivity()), presenter),
                 new GetAvatarSpells(UseCaseThreadPoolExecutor.getInstance(), SpellsGatewayImp.getInstance(getActivity()), presenter),
                 new CacheSpell(UseCaseDefaultScheduler.getInstance(), SpellsGatewayImp.getInstance(getActivity())),
-                new DeleteSpell(UseCaseThreadPoolExecutor.getInstance(), SpellsGatewayImp.getInstance(getActivity())));
+                new DeleteSpell(UseCaseThreadPoolExecutor.getInstance(), SpellsGatewayImp.getInstance(getActivity())),
+                new SortBy(UseCaseDefaultScheduler.getInstance(), presenter));
 
         messageView = view.findViewById(R.id.tv_empty_message);
+        filterButton = view.findViewById(R.id.fab_filter);
+        filterButton.setVisibility(View.VISIBLE);
 
         RecyclerView recyclerView = view.findViewById(R.id.rv_spells);
         adapter = new SpellsAdapter(getActivity());
@@ -88,6 +98,10 @@ public class SpellsListFragment extends Fragment implements OnSpellClick, Spells
         recyclerView.setItemAnimator(new DefaultItemAnimator());
         ItemTouchHelper.SimpleCallback itemTouchHelperCallback = new RecyclerItemTouchHelper(0, ItemTouchHelper.LEFT, this);
         new ItemTouchHelper(itemTouchHelperCallback).attachToRecyclerView(recyclerView);
+    }
+
+    private void initializeViewListeners() {
+        filterButton.setOnClickListener((v -> {showFilterDialog();}));
     }
 
     private void loadSpells() {
@@ -105,6 +119,15 @@ public class SpellsListFragment extends Fragment implements OnSpellClick, Spells
         } catch (IOException e) {
             e.printStackTrace();
         }
+    }
+
+    private void showFilterDialog() {
+        new AlertDialog.Builder(getActivity())
+                .setTitle(R.string.order_by)
+                .setItems(R.array.order_by, ((dialog, which) -> {
+                    controller.sort(adapter.getSpells(), which);
+                }))
+                .show();
     }
 
     @Override
@@ -159,14 +182,26 @@ public class SpellsListFragment extends Fragment implements OnSpellClick, Spells
     }
 
     @Override
+    public void updateData() {
+        adapter.notifyDataSetChanged();
+    }
+
+    @Override
     public void onSwiped(RecyclerView.ViewHolder viewHolder, int direction, int position) {
         if (viewHolder instanceof BaseViewHolder) {
-            controller.deleteSpell(adapter.getSpell(position));
+            Spell spell = adapter.getSpell(position);
+            controller.deleteSpell(spell);
             adapter.removeSpell(position);
 
             if(adapter.getItemCount() == 0) {
                 showMessage();
             }
+
+            Snackbar snackbar = Snackbar.make(view, R.string.spell_deleted_message, Snackbar.LENGTH_LONG);
+            snackbar.setAction(R.string.undo, (v ->  {
+                adapter.restoreSpell(position, spell);
+            }));
+            snackbar.show();
         }
     }
 }

@@ -14,7 +14,7 @@ public class SpellMapper {
 
     public static Spell map(String csv) {
         Spell spell = Spell.EMPTY_SPELL;
-        String[] tokens = csv.split("&");
+        String[] tokens = csv.split("\\|");
 
         try {
             spell = new Spell.Builder()

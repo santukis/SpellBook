@@ -8,4 +8,6 @@ public interface SpellsUseCaseOutput extends UseCaseOutput {
 
     void showSpells(List<Spell> spells);
 
+    void notifyDataHasChanged();
+
 }

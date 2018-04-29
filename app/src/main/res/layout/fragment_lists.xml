@@ -23,4 +23,15 @@
         android:layout_height="match_parent">
     </android.support.v7.widget.RecyclerView>
 
+    <android.support.design.widget.FloatingActionButton
+        android:id="@+id/fab_filter"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentBottom="true"
+        android:layout_margin="10dp"
+        android:src="@drawable/ic_filter"
+        android:visibility="gone"
+        app:fabSize="mini"/>
+
 </RelativeLayout>

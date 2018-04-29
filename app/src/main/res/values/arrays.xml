@@ -13,4 +13,11 @@
         <item>@string/paladin</item>
     </string-array>
 
+    <string-array name="order_by">
+        <item>@string/level</item>
+        <item>@string/name</item>
+        <item>@string/school</item>
+
+    </string-array>
+
 </resources>

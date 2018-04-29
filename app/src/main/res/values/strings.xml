@@ -12,8 +12,8 @@
     <string name="at_higher_levels">En niveles superiores</string>
     <string name="component_description">Descripción componentes</string>
 
-    <string name="no_avatars_title">Sin personajes</string>
-    <string name="no_avatars_message">Todavía no has creado ningún personaje</string>
+    <string name="no_avatars_title">No hay personajes</string>
+    <string name="no_avatars_message">Todavía no has creado ningún personaje ¿Quieres crearlo ahora?</string>
     <string name="avatar_selection_title">Seleccionar Personaje</string>
 
     <string name="conjuration">Conjuración</string>
@@ -42,7 +42,7 @@
     <string name="show_avatars">Mis personajes</string>
     <string name="spells">Hechizos</string>
     <string name="characters">Personajes</string>
-    <string name="no_spells_message">Este personaje no tiene hechizos</string>
+    <string name="no_spells_message">No hay hechizos</string>
     <string name="delete">Borrar</string>
     <string name="filter">Filtro</string>
     <string name="search">Búsqueda</string>
@@ -50,5 +50,10 @@
     <string name="class_filter_message">Filtrar los hechizos por clases</string>
     <string name="school_message">Filtrar los hechizos por escuelas de magía</string>
     <string name="preferences">Preferencias</string>
+    <string name="order_by">Ordenar por</string>
+    <string name="level">Nivel</string>
+    <string name="no_avatar_message_simplified">Todavía no has creado ningún personaje</string>
+    <string name="spell_deleted_message">El hechizo ha sido eliminado</string>
+    <string name="undo">DESHACER</string>
 
 </resources>

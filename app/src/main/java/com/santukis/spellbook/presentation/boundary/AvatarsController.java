@@ -8,4 +8,6 @@ public interface AvatarsController {
 
     void deleteAvatar(Avatar avatar);
 
+    void saveAvatar(Avatar avatar);
+
 }

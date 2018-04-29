@@ -7,4 +7,6 @@ import java.util.List;
 public interface SpellsView extends BaseView {
 
     void showSpells(List<Spell> spells);
+
+    void updateData();
 }

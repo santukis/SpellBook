@@ -73,6 +73,11 @@ public class AvatarsAdapter extends RecyclerView.Adapter<AvatarsAdapter.ViewHold
         notifyItemRemoved(position);
     }
 
+    public void restoreAvatar(int position, Avatar avatar) {
+        avatars.add(position, avatar);
+        notifyItemInserted(position);
+    }
+
     static class ViewHolder extends BaseViewHolder {
 
         private TextView nameView;

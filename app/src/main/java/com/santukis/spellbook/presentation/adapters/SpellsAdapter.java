@@ -63,6 +63,10 @@ public class SpellsAdapter extends RecyclerView.Adapter<SpellsAdapter.ViewHolder
         return spells.get(position);
     }
 
+    public List<Spell> getSpells() {
+        return spells;
+    }
+
     public void updateSpells(List<Spell> spells) {
         this.spells.clear();
         this.spells.addAll(spells);
@@ -72,6 +76,11 @@ public class SpellsAdapter extends RecyclerView.Adapter<SpellsAdapter.ViewHolder
     public void removeSpell(int position) {
         spells.remove(position);
         notifyItemRemoved(position);
+    }
+
+    public void restoreSpell(int position, Spell spell) {
+        spells.add(position, spell);
+        notifyItemInserted(position);
     }
 
     @Override

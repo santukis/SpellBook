@@ -3,6 +3,7 @@ package com.santukis.spellbook.presentation.boundary;
 import com.santukis.spellbook.domain.model.Spell;
 
 import java.io.InputStream;
+import java.util.List;
 
 public interface SpellsController {
 
@@ -13,4 +14,6 @@ public interface SpellsController {
     void cacheSpell(Spell spell);
 
     void deleteSpell(Spell spell);
+
+    void sort(List<Spell> spells, int criteria);
 }

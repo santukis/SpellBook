@@ -3,6 +3,7 @@ package com.santukis.spellbook.presentation.view;
 import android.app.Fragment;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.support.design.widget.Snackbar;
 import android.support.v7.widget.DefaultItemAnimator;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -18,6 +19,7 @@ import com.santukis.spellbook.domain.UseCaseThreadPoolExecutor;
 import com.santukis.spellbook.domain.model.Avatar;
 import com.santukis.spellbook.domain.usecase.DeleteAvatar;
 import com.santukis.spellbook.domain.usecase.GetAvatars;
+import com.santukis.spellbook.domain.usecase.SaveAvatar;
 import com.santukis.spellbook.presentation.adapters.AvatarsAdapter;
 import com.santukis.spellbook.presentation.adapters.BaseViewHolder;
 import com.santukis.spellbook.presentation.boundary.AvatarsController;
@@ -32,6 +34,7 @@ import java.util.List;
 public class AvatarsListFragment extends Fragment implements OnAvatarClick, AvatarsView,
         RecyclerItemTouchHelper.RecyclerItemTouchHelperListener {
 
+    private View view;
     private TextView messageView;
     private AvatarsController controller;
     private AvatarsAdapter adapter;
@@ -39,7 +42,7 @@ public class AvatarsListFragment extends Fragment implements OnAvatarClick, Avat
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.fragment_lists, container, false);
+        view = inflater.inflate(R.layout.fragment_lists, container, false);
 
         initializeViewComponents(view);
 
@@ -52,7 +55,8 @@ public class AvatarsListFragment extends Fragment implements OnAvatarClick, Avat
         AvatarsPresenter presenter = new AvatarsPresenter(this);
         controller = new AvatarsControllerImp(
                 new GetAvatars(UseCaseThreadPoolExecutor.getInstance(), AvatarsGatewayImp.getInstance(getActivity()), presenter),
-                new DeleteAvatar(UseCaseThreadPoolExecutor.getInstance(), AvatarsGatewayImp.getInstance(getActivity())));
+                new DeleteAvatar(UseCaseThreadPoolExecutor.getInstance(), AvatarsGatewayImp.getInstance(getActivity())),
+                new SaveAvatar(UseCaseThreadPoolExecutor.getInstance(), AvatarsGatewayImp.getInstance(getActivity()), presenter));
 
         messageView = view.findViewById(R.id.tv_empty_message);
 
@@ -80,7 +84,7 @@ public class AvatarsListFragment extends Fragment implements OnAvatarClick, Avat
 
     @Override
     public void showMessage() {
-        messageView.setText(R.string.no_avatars_message);
+        messageView.setText(R.string.no_avatar_message_simplified);
         messageView.setCompoundDrawablesRelativeWithIntrinsicBounds(
                 R.drawable.ic_add_character,
                 0,
@@ -97,12 +101,21 @@ public class AvatarsListFragment extends Fragment implements OnAvatarClick, Avat
     @Override
     public void onSwiped(RecyclerView.ViewHolder viewHolder, int direction, int position) {
         if (viewHolder instanceof BaseViewHolder) {
-            controller.deleteAvatar(adapter.getAvatar(position));
+            Avatar avatar = adapter.getAvatar(position);
+            controller.deleteAvatar(avatar);
             adapter.removeAvatar(position);
 
             if(adapter.getItemCount() == 0) {
                 showMessage();
             }
+
+            Snackbar snackbar = Snackbar.make(view, R.string.spell_deleted_message, Snackbar.LENGTH_LONG);
+            snackbar.setAction(R.string.undo, (v ->  {
+                adapter.restoreAvatar(position, avatar);
+                controller.saveAvatar(avatar);
+                hideMessage();
+            }));
+            snackbar.show();
         }
     }
 }
