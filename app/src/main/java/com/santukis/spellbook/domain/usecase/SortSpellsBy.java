@@ -3,18 +3,18 @@ package com.santukis.spellbook.domain.usecase;
 import com.santukis.spellbook.domain.Response;
 import com.santukis.spellbook.domain.UseCase;
 import com.santukis.spellbook.domain.UseCaseScheduler;
-import com.santukis.spellbook.domain.boundary.SpellsUseCaseOutput;
+import com.santukis.spellbook.domain.boundary.ShowSpellsUseCaseOutput;
 import com.santukis.spellbook.domain.model.Spell;
 import com.santukis.spellbook.domain.sort.SpellSort;
 import com.santukis.spellbook.domain.sort.SpellSortFactory;
 
 import java.util.List;
 
-public class SortBy extends UseCase<SortBy.RequestValues, Boolean> {
+public class SortSpellsBy extends UseCase<SortSpellsBy.RequestValues, List<Spell>> {
 
-    private final SpellsUseCaseOutput presenter;
+    private final ShowSpellsUseCaseOutput presenter;
 
-    public SortBy(UseCaseScheduler useCaseScheduler, SpellsUseCaseOutput presenter) {
+    public SortSpellsBy(UseCaseScheduler useCaseScheduler, ShowSpellsUseCaseOutput presenter) {
         super(useCaseScheduler);
         this.presenter = presenter;
     }
@@ -22,14 +22,23 @@ public class SortBy extends UseCase<SortBy.RequestValues, Boolean> {
     @Override
     protected void executeUseCase(RequestValues requestValues) {
         SpellSort spellSort = SpellSortFactory.create(requestValues.getCriteria());
-        spellSort.sort(requestValues.getUnorderedSpells());
-        submitResponse(Response.success(true));
+        List<Spell> orderedSpells = spellSort.sort(requestValues.getUnorderedSpells());
+
+        if(orderedSpells.isEmpty()) {
+            submitResponse(Response.error("Error ordering"));
+
+        } else {
+            submitResponse(Response.success(orderedSpells));
+        }
     }
 
     @Override
-    protected void onResponse(Response<Boolean> response) {
+    protected void onResponse(Response<List<Spell>> response) {
         if(response.isSuccessful()) {
-            presenter.notifyDataHasChanged();
+            presenter.showSpells(response.getBody());
+
+        } else {
+            presenter.showError(response.getError());
         }
     }
 

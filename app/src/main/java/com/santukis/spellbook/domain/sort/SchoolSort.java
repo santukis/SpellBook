@@ -9,7 +9,8 @@ public class SchoolSort implements SpellSort {
 
 
     @Override
-    public void sort(List<Spell> unorderedSpells) {
+    public List<Spell> sort(List<Spell> unorderedSpells) {
         Collections.sort(unorderedSpells, (o1, o2) -> o1.getSchool().compareTo(o2.getSchool()));
+        return unorderedSpells;
     }
 }

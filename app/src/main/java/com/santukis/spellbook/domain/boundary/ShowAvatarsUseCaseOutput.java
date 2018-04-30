@@ -5,7 +5,7 @@ import com.santukis.spellbook.domain.model.Spell;
 
 import java.util.List;
 
-public interface AvatarUseCaseOutput extends UseCaseOutput {
+public interface ShowAvatarsUseCaseOutput extends UseCaseOutput {
 
     void showAvatars(List<Avatar> avatars);
 }

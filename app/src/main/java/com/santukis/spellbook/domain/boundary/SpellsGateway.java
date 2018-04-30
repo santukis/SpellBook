@@ -13,9 +13,7 @@ public interface SpellsGateway {
 
     Spell loadSpell();
 
-    void cacheSpell(Spell spell);
-
-    boolean saveSpell(String avatarName);
+    boolean saveSpell(Spell spell, List<String> avatarName);
 
     boolean deleteSpell(Spell spell);
 

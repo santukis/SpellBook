@@ -109,10 +109,10 @@ public class AvatarsListFragment extends Fragment implements OnAvatarClick, Avat
                 showMessage();
             }
 
-            Snackbar snackbar = Snackbar.make(view, R.string.spell_deleted_message, Snackbar.LENGTH_LONG);
+            Snackbar snackbar = Snackbar.make(view, R.string.avatar_deleted_message, Snackbar.LENGTH_LONG);
             snackbar.setAction(R.string.undo, (v ->  {
-                adapter.restoreAvatar(position, avatar);
                 controller.saveAvatar(avatar);
+                adapter.restoreAvatar(position, avatar);
                 hideMessage();
             }));
             snackbar.show();

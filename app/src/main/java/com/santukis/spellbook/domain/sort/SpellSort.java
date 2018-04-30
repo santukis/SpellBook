@@ -11,5 +11,5 @@ public interface SpellSort {
     int NAME = 1;
     int SCHOOL = 2;
 
-    void sort(List<Spell> unorderedSpells);
+    List<Spell> sort(List<Spell> unorderedSpells);
 }

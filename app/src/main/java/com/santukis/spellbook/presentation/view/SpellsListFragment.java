@@ -23,13 +23,13 @@ import com.santukis.spellbook.R;
 import com.santukis.spellbook.data.gateway.SpellsGatewayImp;
 import com.santukis.spellbook.domain.UseCaseDefaultScheduler;
 import com.santukis.spellbook.domain.UseCaseThreadPoolExecutor;
-import com.santukis.spellbook.domain.boundary.SpellsUseCaseOutput;
+import com.santukis.spellbook.domain.boundary.ShowSpellsUseCaseOutput;
 import com.santukis.spellbook.domain.model.Spell;
-import com.santukis.spellbook.domain.usecase.CacheSpell;
 import com.santukis.spellbook.domain.usecase.DeleteSpell;
 import com.santukis.spellbook.domain.usecase.GetAvatarSpells;
 import com.santukis.spellbook.domain.usecase.GetSpells;
-import com.santukis.spellbook.domain.usecase.SortBy;
+import com.santukis.spellbook.domain.usecase.SaveSpell;
+import com.santukis.spellbook.domain.usecase.SortSpellsBy;
 import com.santukis.spellbook.presentation.adapters.BaseViewHolder;
 import com.santukis.spellbook.presentation.adapters.SpellsAdapter;
 import com.santukis.spellbook.presentation.boundary.SpellsController;
@@ -78,13 +78,13 @@ public class SpellsListFragment extends Fragment implements OnSpellClick, Spells
     }
 
     private void initializeViewComponents(View view) {
-        SpellsUseCaseOutput presenter = new SpellsPresenter(this);
+        ShowSpellsUseCaseOutput presenter = new SpellsPresenter(this);
         controller = new SpellsControllerImp(
                 new GetSpells(UseCaseDefaultScheduler.getInstance(), SpellsGatewayImp.getInstance(getActivity()), presenter),
                 new GetAvatarSpells(UseCaseThreadPoolExecutor.getInstance(), SpellsGatewayImp.getInstance(getActivity()), presenter),
-                new CacheSpell(UseCaseDefaultScheduler.getInstance(), SpellsGatewayImp.getInstance(getActivity())),
+                new SaveSpell(UseCaseThreadPoolExecutor.getInstance(), SpellsGatewayImp.getInstance(getActivity()), presenter),
                 new DeleteSpell(UseCaseThreadPoolExecutor.getInstance(), SpellsGatewayImp.getInstance(getActivity())),
-                new SortBy(UseCaseDefaultScheduler.getInstance(), presenter));
+                new SortSpellsBy(UseCaseDefaultScheduler.getInstance(), presenter));
 
         messageView = view.findViewById(R.id.tv_empty_message);
         filterButton = view.findViewById(R.id.fab_filter);
@@ -107,7 +107,7 @@ public class SpellsListFragment extends Fragment implements OnSpellClick, Spells
     private void loadSpells() {
         try {
             if(getArguments() != null) {
-                String name = getArguments().getString("Avatar", "");
+                String name = getAvatarName();
                 ((MainActivity) getActivity()).setActionBarTitle(name);
                 controller.loadSpells(name);
 
@@ -119,6 +119,10 @@ public class SpellsListFragment extends Fragment implements OnSpellClick, Spells
         } catch (IOException e) {
             e.printStackTrace();
         }
+    }
+
+    private String getAvatarName() {
+        return getArguments() != null ? getArguments().getString("Avatar", "") : null;
     }
 
     private void showFilterDialog() {
@@ -161,7 +165,7 @@ public class SpellsListFragment extends Fragment implements OnSpellClick, Spells
 
     @Override
     public void onClick(Spell spell) {
-        controller.cacheSpell(spell);
+        controller.saveSpell(spell, getAvatarName());
         ((MainActivity) getActivity()).openView(new SpellDetailFragment());
     }
 
@@ -182,11 +186,6 @@ public class SpellsListFragment extends Fragment implements OnSpellClick, Spells
     }
 
     @Override
-    public void updateData() {
-        adapter.notifyDataSetChanged();
-    }
-
-    @Override
     public void onSwiped(RecyclerView.ViewHolder viewHolder, int direction, int position) {
         if (viewHolder instanceof BaseViewHolder) {
             Spell spell = adapter.getSpell(position);
@@ -199,7 +198,9 @@ public class SpellsListFragment extends Fragment implements OnSpellClick, Spells
 
             Snackbar snackbar = Snackbar.make(view, R.string.spell_deleted_message, Snackbar.LENGTH_LONG);
             snackbar.setAction(R.string.undo, (v ->  {
+                controller.saveSpell(spell, getAvatarName());
                 adapter.restoreSpell(position, spell);
+                hideMessage();
             }));
             snackbar.show();
         }

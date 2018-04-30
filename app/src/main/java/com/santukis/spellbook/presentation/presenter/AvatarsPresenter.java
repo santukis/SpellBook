@@ -1,12 +1,12 @@
 package com.santukis.spellbook.presentation.presenter;
 
-import com.santukis.spellbook.domain.boundary.AvatarUseCaseOutput;
+import com.santukis.spellbook.domain.boundary.ShowAvatarsUseCaseOutput;
 import com.santukis.spellbook.domain.model.Avatar;
 import com.santukis.spellbook.presentation.boundary.AvatarsView;
 
 import java.util.List;
 
-public class AvatarsPresenter implements AvatarUseCaseOutput {
+public class AvatarsPresenter implements ShowAvatarsUseCaseOutput {
 
     private final AvatarsView view;
 

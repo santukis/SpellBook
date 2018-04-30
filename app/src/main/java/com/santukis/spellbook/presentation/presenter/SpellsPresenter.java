@@ -1,12 +1,12 @@
 package com.santukis.spellbook.presentation.presenter;
 
-import com.santukis.spellbook.domain.boundary.SpellsUseCaseOutput;
+import com.santukis.spellbook.domain.boundary.ShowSpellsUseCaseOutput;
 import com.santukis.spellbook.domain.model.Spell;
 import com.santukis.spellbook.presentation.boundary.SpellsView;
 
 import java.util.List;
 
-public class SpellsPresenter implements SpellsUseCaseOutput {
+public class SpellsPresenter implements ShowSpellsUseCaseOutput {
 
     private final SpellsView view;
 
@@ -25,10 +25,5 @@ public class SpellsPresenter implements SpellsUseCaseOutput {
     @Override
     public void showError(String error) {
         view.showMessage();
-    }
-
-    @Override
-    public void notifyDataHasChanged() {
-        view.updateData();
     }
 }

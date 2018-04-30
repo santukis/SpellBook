@@ -2,10 +2,12 @@ package com.santukis.spellbook.presentation.controller;
 
 import com.santukis.spellbook.domain.UseCase;
 import com.santukis.spellbook.domain.model.Spell;
-import com.santukis.spellbook.domain.usecase.SortBy;
+import com.santukis.spellbook.domain.usecase.SaveSpell;
+import com.santukis.spellbook.domain.usecase.SortSpellsBy;
 import com.santukis.spellbook.presentation.boundary.SpellsController;
 
 import java.io.InputStream;
+import java.util.Collections;
 import java.util.List;
 
 public class SpellsControllerImp implements SpellsController{
@@ -13,18 +15,18 @@ public class SpellsControllerImp implements SpellsController{
 
     private final UseCase<InputStream, List<Spell>> getSpells;
     private final UseCase<String, List<Spell>> getAvatarSpells;
-    private final UseCase<Spell, Void> cacheSpell;
+    private final UseCase<SaveSpell.RequestValues, Boolean> saveSpell;
     private final UseCase<Spell, Boolean> deleteSpell;
-    private final UseCase<SortBy.RequestValues, Boolean> sortBy;
+    private final UseCase<SortSpellsBy.RequestValues, List<Spell>> sortBy;
 
     public SpellsControllerImp(UseCase<InputStream, List<Spell>> getSpells,
                                UseCase<String, List<Spell>> getAvatarSpells,
-                               UseCase<Spell, Void> cacheSpell,
+                               UseCase<SaveSpell.RequestValues, Boolean> saveSpell,
                                UseCase<Spell, Boolean> deleteSpell,
-                               UseCase<SortBy.RequestValues, Boolean> sortBy) {
+                               UseCase<SortSpellsBy.RequestValues, List<Spell>> sortBy) {
         this.getSpells = getSpells;
         this.getAvatarSpells = getAvatarSpells;
-        this.cacheSpell = cacheSpell;
+        this.saveSpell = saveSpell;
         this.deleteSpell = deleteSpell;
         this.sortBy = sortBy;
     }
@@ -40,8 +42,8 @@ public class SpellsControllerImp implements SpellsController{
     }
 
     @Override
-    public void cacheSpell(Spell spell) {
-        cacheSpell.execute(spell);
+    public void saveSpell(Spell spell, String avatarName) {
+        saveSpell.execute(new SaveSpell.RequestValues(spell, Collections.singletonList(avatarName)));
     }
 
     @Override
@@ -51,6 +53,6 @@ public class SpellsControllerImp implements SpellsController{
 
     @Override
     public void sort(List<Spell> spells, int criteria) {
-        sortBy.execute(new SortBy.RequestValues(spells, criteria));
+        sortBy.execute(new SortSpellsBy.RequestValues(spells, criteria));
     }
 }

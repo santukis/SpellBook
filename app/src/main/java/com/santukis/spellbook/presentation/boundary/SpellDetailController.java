@@ -8,5 +8,5 @@ public interface SpellDetailController {
 
     void loadAvatars();
 
-    void saveSpellTo(List<String> avatarsNames);
+    void saveCachedSpell(List<String> avatarsNames);
 }

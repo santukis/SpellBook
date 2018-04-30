@@ -120,7 +120,7 @@ public class SpellDetailFragment extends Fragment implements SpellDetailView {
                             Log.d("AVATARS", String.valueOf(selectedAvatars.size()));
                         })
                 .setPositiveButton(android.R.string.ok, (dialog, which) -> {
-                    controller.saveSpellTo(selectedAvatars);
+                    controller.saveCachedSpell(selectedAvatars);
                 })
                 .setNegativeButton(android.R.string.cancel, null)
                 .show();
@@ -189,9 +189,9 @@ public class SpellDetailFragment extends Fragment implements SpellDetailView {
 
     @Override
     public void showDescription(String description) {
-        description = "<html><head><style>body {color:#444444; line-height: 22px}</style></head><body align=\"justify\";>"
+        description = getString(R.string.description_html_start)
                 .concat(description)
-                .concat("</body></html>");
+                .concat(getString(R.string.description_html_end));
         descriptionView.loadDataWithBaseURL(null, description, "text/html", "ISO-8859-1", null);
     }
 
@@ -202,9 +202,9 @@ public class SpellDetailFragment extends Fragment implements SpellDetailView {
             higherLevelsTitleView.setVisibility(View.GONE);
 
         } else {
-            description = ("<html><head><style>body {color:#444444; line-height: 22px}</style></head><body align=\"justify\";>")
+            description = getString(R.string.description_html_start)
                     .concat(description)
-                    .concat("</body></html>");
+                    .concat(getString(R.string.description_html_end));
             higherLevelsView.loadDataWithBaseURL(null, description, "text/html", "ISO-8859-1", null);
         }
     }

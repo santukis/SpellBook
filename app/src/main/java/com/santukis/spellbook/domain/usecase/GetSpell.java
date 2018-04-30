@@ -3,18 +3,18 @@ package com.santukis.spellbook.domain.usecase;
 import com.santukis.spellbook.domain.Response;
 import com.santukis.spellbook.domain.UseCase;
 import com.santukis.spellbook.domain.UseCaseScheduler;
-import com.santukis.spellbook.domain.boundary.SpellDetailUseCaseOutput;
+import com.santukis.spellbook.domain.boundary.ShowSpellUseCaseOutput;
 import com.santukis.spellbook.domain.boundary.SpellsGateway;
 import com.santukis.spellbook.domain.model.Spell;
 
 public class GetSpell extends UseCase<Void, Spell> {
 
     private final SpellsGateway gateway;
-    private final SpellDetailUseCaseOutput presenter;
+    private final ShowSpellUseCaseOutput presenter;
 
     public GetSpell(UseCaseScheduler useCaseScheduler,
                     SpellsGateway gateway,
-                    SpellDetailUseCaseOutput presenter) {
+                    ShowSpellUseCaseOutput presenter) {
 
         super(useCaseScheduler);
         this.gateway = gateway;

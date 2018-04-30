@@ -10,7 +10,8 @@ public class NameSort implements SpellSort {
 
 
     @Override
-    public void sort(List<Spell> unorderedSpells) {
+    public List<Spell> sort(List<Spell> unorderedSpells) {
         Collections.sort(unorderedSpells, (o1, o2) -> o1.getName().compareTo(o2.getName()));
+        return  unorderedSpells;
     }
 }

@@ -14,11 +14,20 @@
     <item
         android:id="@+id/navigation_show_spells"
         android:icon="@drawable/speel_book"
-        android:title="@string/spells"/>
+        android:title="@string/spells" />
 
-    <item
-        android:id="@+id/navigation_show_preferences"
-        android:icon="@android:drawable/ic_menu_preferences"
-        android:title="@string/preferences"/>
+    <item android:title="@string/settings">
 
+        <menu>
+            <item
+                android:id="@+id/navigation_show_preferences"
+                android:icon="@drawable/ic_settings"
+                android:title="@string/preferences" />
+
+            <item
+                android:id="@+id/navigation_show_about"
+                android:icon="@android:drawable/ic_dialog_info"
+                android:title="@string/about" />
+        </menu>
+    </item>
 </menu>

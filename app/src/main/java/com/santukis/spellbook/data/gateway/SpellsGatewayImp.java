@@ -64,11 +64,6 @@ public class SpellsGatewayImp implements SpellsGateway {
     }
 
     @Override
-    public void cacheSpell(Spell spell) {
-        cachedSpell = spell;
-    }
-
-    @Override
     public Spell loadSpell() {
         return cachedSpell;
     }
@@ -80,9 +75,17 @@ public class SpellsGatewayImp implements SpellsGateway {
     }
 
     @Override
-    public boolean saveSpell(String avatarName) {
-        long insertedSpell = database.spellsDao().insert(SpellMapper.map(cachedSpell, avatarName));
-        return insertedSpell != 0;
+    public boolean saveSpell(Spell spell, List<String> avatarsNames) {
+        if(spell != Spell.EMPTY_SPELL) cachedSpell = spell;
+
+        if(avatarsNames == null || avatarsNames.isEmpty()) return false;
+
+        for(String name : avatarsNames) {
+            long insertedSpell = database.spellsDao().insert(SpellMapper.map(cachedSpell, name));
+            if(insertedSpell == 0) return false;
+        }
+
+        return true;
     }
 
     @Override

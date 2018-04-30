@@ -1,9 +1,5 @@
 <resources>
-    <string name="app_name">SpellBook</string>
-
-    <string name="title_home">Home</string>
-    <string name="title_dashboard">Dashboard</string>
-    <string name="title_notifications">Notifications</string>
+    <string name="app_name">SRD 5.1\nLibro de Hechizos</string>
 
     <string name="casting_time">Lanzamiento</string>
     <string name="range">Alcance</string>
@@ -55,5 +51,15 @@
     <string name="no_avatar_message_simplified">Todavía no has creado ningún personaje</string>
     <string name="spell_deleted_message">El hechizo ha sido eliminado</string>
     <string name="undo">DESHACER</string>
+    <string name="settings">Configuración</string>
+    <string name="about">Acerca de...</string>
+    <string name="about_description"><![CDATA[<html><head><style>body {color:#444444; line-height: 22px}</style></head><body align=\"justify\";><p><b>SRD 5.1 Libro de hechizos</b> es una app fanmade sin ánimo de lucro. Este proyecto ha sido realizado como ejemplo de una arquitectura de tipo Clean (Robert C. Martin, 2017. <i>Clean architecture</i>).  El código de la aplicación está sujeto a la licencia <i>Apache v2.0</i>, y se encuentra disponible en el siguiente link:</p></body></html>]]></string>
+    <string name="nosolorol_description"><![CDATA[<html><head><style>body {color:#444444; line-height: 22px}</style></head><body align=\"justify\";><p>La descripción de los hechizos ha sido posible gracias a la liberación de la traducción del SRD 5.1 de WOF de Nosolorol, cuya traducción ha sido realizada por Ana Navalón. Mas info en:</p></body></html>]]></string>
+    <string name="nosolorl_link" translatable="false">http://srd.nosolorol.com/DD5/index.html</string>
+    <string name="github_link" translatable="false">https://github.com/santukis</string>
+    <string name="school_filter_message">Filtra las búsquedas por escuela de magia</string>
+    <string name="description_html_start" translatable="false"><![CDATA[<html><head><style>body {color:#444444; line-height: 22px}</style></head><body align=\"justify\";>]]></string>
+    <string name="description_html_end" translatable="false"><![CDATA[</body></html>]]></string>
+    <string name="avatar_deleted_message">El personaje ha sido eliminado</string>
 
 </resources>

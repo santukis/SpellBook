@@ -4,7 +4,7 @@ import com.santukis.spellbook.domain.Response;
 import com.santukis.spellbook.domain.UseCase;
 import com.santukis.spellbook.domain.UseCaseScheduler;
 import com.santukis.spellbook.domain.boundary.SpellsGateway;
-import com.santukis.spellbook.domain.boundary.SpellsUseCaseOutput;
+import com.santukis.spellbook.domain.boundary.ShowSpellsUseCaseOutput;
 import com.santukis.spellbook.domain.model.Spell;
 
 import java.util.List;
@@ -12,12 +12,12 @@ import java.util.List;
 public class GetAvatarSpells extends UseCase<String, List<Spell>> {
 
     private final SpellsGateway gateway;
-    private final SpellsUseCaseOutput presenter;
+    private final ShowSpellsUseCaseOutput presenter;
 
 
     public GetAvatarSpells(UseCaseScheduler useCaseScheduler,
                            SpellsGateway gateway,
-                           SpellsUseCaseOutput presenter) {
+                           ShowSpellsUseCaseOutput presenter) {
         super(useCaseScheduler);
         this.gateway = gateway;
         this.presenter = presenter;

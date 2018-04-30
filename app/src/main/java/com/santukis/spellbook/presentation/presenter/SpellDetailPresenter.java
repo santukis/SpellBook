@@ -1,7 +1,7 @@
 package com.santukis.spellbook.presentation.presenter;
 
-import com.santukis.spellbook.domain.boundary.AvatarUseCaseOutput;
-import com.santukis.spellbook.domain.boundary.SpellDetailUseCaseOutput;
+import com.santukis.spellbook.domain.boundary.ShowAvatarsUseCaseOutput;
+import com.santukis.spellbook.domain.boundary.ShowSpellUseCaseOutput;
 import com.santukis.spellbook.domain.model.Avatar;
 import com.santukis.spellbook.domain.model.Profession;
 import com.santukis.spellbook.domain.model.School;
@@ -11,13 +11,14 @@ import com.santukis.spellbook.presentation.boundary.SpellDetailView;
 import java.util.ArrayList;
 import java.util.List;
 
-public class SpellDetailPresenter implements SpellDetailUseCaseOutput, AvatarUseCaseOutput {
+public class SpellDetailPresenter implements ShowSpellUseCaseOutput, ShowAvatarsUseCaseOutput {
 
     private final SpellDetailView view;
 
     public SpellDetailPresenter(SpellDetailView view) {
         this.view = view;
     }
+
     @Override
     public void showSpell(Spell spell) {
         showName(spell.getName());

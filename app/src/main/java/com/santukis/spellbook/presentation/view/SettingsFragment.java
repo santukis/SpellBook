@@ -22,9 +22,15 @@ public class SettingsFragment extends PreferenceFragment implements Preference.O
         super.onCreate(savedInstanceState);
         addPreferencesFromResource(R.xml.preferences);
 
+        initializeViewComponents();
+    }
+
+    private void initializeViewComponents() {
         controller = new SettingsControllerImp(
                 new SavePreference(UseCaseDefaultScheduler.getInstance(), SettingsGatewayImp.getInstance(getActivity()))
         );
+
+        ((MainActivity) getActivity()).setActionBarTitle(getString(R.string.settings));
     }
 
     @Override

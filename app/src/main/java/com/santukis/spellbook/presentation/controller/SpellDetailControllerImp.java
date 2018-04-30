@@ -3,6 +3,7 @@ package com.santukis.spellbook.presentation.controller;
 import com.santukis.spellbook.domain.UseCase;
 import com.santukis.spellbook.domain.model.Avatar;
 import com.santukis.spellbook.domain.model.Spell;
+import com.santukis.spellbook.domain.usecase.SaveSpell;
 import com.santukis.spellbook.presentation.boundary.SpellDetailController;
 
 import java.util.List;
@@ -11,11 +12,11 @@ public class SpellDetailControllerImp implements SpellDetailController {
 
     private final UseCase<Void, Spell> getSpell;
     private final UseCase<Void, List<Avatar>> getAvatars;
-    private final UseCase<List<String>, Boolean> saveSpell;
+    private final UseCase<SaveSpell.RequestValues, Boolean> saveSpell;
 
     public SpellDetailControllerImp(UseCase<Void, Spell> getSpell,
                                     UseCase<Void, List<Avatar>> getAvatars,
-                                    UseCase<List<String>, Boolean> saveSpell) {
+                                    UseCase<SaveSpell.RequestValues, Boolean> saveSpell) {
         this.getSpell = getSpell;
         this.getAvatars = getAvatars;
         this.saveSpell = saveSpell;
@@ -32,7 +33,7 @@ public class SpellDetailControllerImp implements SpellDetailController {
     }
 
     @Override
-    public void saveSpellTo(List<String> avatarsName) {
-        saveSpell.execute(avatarsName);
+    public void saveCachedSpell(List<String> avatarsNames) {
+        saveSpell.execute(new SaveSpell.RequestValues(Spell.EMPTY_SPELL, avatarsNames));
     }
 }

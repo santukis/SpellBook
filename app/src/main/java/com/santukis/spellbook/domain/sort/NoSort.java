@@ -7,7 +7,7 @@ import java.util.List;
 public class NoSort implements SpellSort {
 
     @Override
-    public void sort(List<Spell> unorderedSpells) {
-
+    public List<Spell> sort(List<Spell> unorderedSpells) {
+        return unorderedSpells;
     }
 }

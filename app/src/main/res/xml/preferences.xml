@@ -1,64 +1,59 @@
 <?xml version="1.0" encoding="utf-8"?>
-<PreferenceScreen
-    xmlns:android="http://schemas.android.com/apk/res/android">
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:context=".presentation.view.MainActivity">
 
     <PreferenceCategory
-        android:title="@string/search">
+        android:layout="@layout/preference_category_summary"
+        android:summary="@string/school_filter_message"
+        android:title="@string/school" />
 
-        <PreferenceScreen
-            android:title="@string/school"
-            android:summary="@string/school_message">
+    <SwitchPreference
+        android:defaultValue="true"
+        android:key="ABJURATION"
+        android:persistent="true"
+        android:title="@string/abjuration" />
 
-            <SwitchPreference
-                android:key="ABJURATION"
-                android:title="@string/abjuration"
-                android:defaultValue="true"
-                android:persistent="true"/>
+    <SwitchPreference
+        android:defaultValue="true"
+        android:key="DIVINATION"
+        android:persistent="true"
+        android:title="@string/divination" />
 
-            <SwitchPreference
-                android:key="DIVINATION"
-                android:title="@string/divination"
-                android:defaultValue="true"
-                android:persistent="true"/>
+    <SwitchPreference
+        android:defaultValue="true"
+        android:key="CONJURATION"
+        android:persistent="true"
+        android:title="@string/conjuration" />
 
-            <SwitchPreference
-                android:key="CONJURATION"
-                android:title="@string/conjuration"
-                android:defaultValue="true"
-                android:persistent="true"/>
+    <SwitchPreference
+        android:defaultValue="true"
+        android:key="ENCHANTMENT"
+        android:persistent="true"
+        android:title="@string/enchantment" />
 
-            <SwitchPreference
-                android:key="ENCHANTMENT"
-                android:title="@string/enchantment"
-                android:defaultValue="true"
-                android:persistent="true"/>
+    <SwitchPreference
+        android:defaultValue="true"
+        android:key="EVOCATION"
+        android:persistent="true"
+        android:title="@string/evocation" />
 
-            <SwitchPreference
-                android:key="EVOCATION"
-                android:title="@string/evocation"
-                android:defaultValue="true"
-                android:persistent="true"/>
+    <SwitchPreference
+        android:defaultValue="true"
+        android:key="ILLUSION"
+        android:persistent="true"
+        android:title="@string/illusion" />
 
-            <SwitchPreference
-                android:key="ILLUSION"
-                android:title="@string/illusion"
-                android:defaultValue="true"
-                android:persistent="true"/>
+    <SwitchPreference
+        android:defaultValue="true"
+        android:key="NECROMANCY"
+        android:persistent="true"
+        android:title="@string/necromancy" />
 
-            <SwitchPreference
-                android:key="NECROMANCY"
-                android:title="@string/necromancy"
-                android:defaultValue="true"
-                android:persistent="true"/>
-
-            <SwitchPreference
-                android:key="TRANSMUTATION"
-                android:title="@string/transmutation"
-                android:defaultValue="true"
-                android:persistent="true"/>
-
-        </PreferenceScreen>
-
-    </PreferenceCategory>
+    <SwitchPreference
+        android:defaultValue="true"
+        android:key="TRANSMUTATION"
+        android:persistent="true"
+        android:title="@string/transmutation" />
 
 </PreferenceScreen>

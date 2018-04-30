@@ -5,10 +5,11 @@ import com.santukis.spellbook.domain.UseCase;
 import com.santukis.spellbook.domain.UseCaseScheduler;
 import com.santukis.spellbook.domain.boundary.SpellsGateway;
 import com.santukis.spellbook.domain.boundary.UseCaseOutput;
+import com.santukis.spellbook.domain.model.Spell;
 
 import java.util.List;
 
-public class SaveSpell extends UseCase<List<String>, Boolean> {
+public class SaveSpell extends UseCase<SaveSpell.RequestValues, Boolean> {
 
     private final SpellsGateway gateway;
     private final UseCaseOutput presenter;
@@ -22,25 +23,42 @@ public class SaveSpell extends UseCase<List<String>, Boolean> {
     }
 
     @Override
-    protected void executeUseCase(List<String> avatars) {
+    protected void executeUseCase(RequestValues requestValues) {
 
-        for(String avatar : avatars) {
-            if(!gateway.saveSpell(avatar)) {
-                submitResponse(Response.error("Error saving Spell"));
-                return;
-            }
+        if (gateway.saveSpell(requestValues.getSpell(), requestValues.getAvatars())) {
+            submitResponse(Response.success(true));
+
+        } else {
+            submitResponse(Response.error("Error saving Spell"));
         }
 
-        submitResponse(Response.success(true));
     }
 
     @Override
     protected void onResponse(Response<Boolean> response) {
-        if(response.isSuccessful()) {
+        if (response.isSuccessful()) {
             presenter.closeView();
 
         } else {
             presenter.showError(response.getError());
+        }
+    }
+
+    public static class RequestValues {
+        private Spell spell;
+        private List<String> avatars;
+
+        public RequestValues(Spell spell, List<String> avatars) {
+            this.spell = spell;
+            this.avatars = avatars;
+        }
+
+        Spell getSpell() {
+            return spell;
+        }
+
+        List<String> getAvatars() {
+            return avatars;
         }
     }
 }
