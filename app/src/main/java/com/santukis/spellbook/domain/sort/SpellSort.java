@@ -6,7 +6,7 @@ import java.util.List;
 
 public interface SpellSort {
 
-    //Criteria
+    //SpellFilter
     int LEVEL = 0;
     int NAME = 1;
     int SCHOOL = 2;

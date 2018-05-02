@@ -8,6 +8,7 @@ import com.santukis.spellbook.domain.model.Spell;
 import com.santukis.spellbook.domain.sort.SpellSort;
 import com.santukis.spellbook.domain.sort.SpellSortFactory;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class SortSpellsBy extends UseCase<SortSpellsBy.RequestValues, List<Spell>> {
@@ -22,7 +23,7 @@ public class SortSpellsBy extends UseCase<SortSpellsBy.RequestValues, List<Spell
     @Override
     protected void executeUseCase(RequestValues requestValues) {
         SpellSort spellSort = SpellSortFactory.create(requestValues.getCriteria());
-        List<Spell> orderedSpells = spellSort.sort(requestValues.getUnorderedSpells());
+        List<Spell> orderedSpells = new ArrayList<>(spellSort.sort(requestValues.getUnorderedSpells()));
 
         if(orderedSpells.isEmpty()) {
             submitResponse(Response.error("Error ordering"));

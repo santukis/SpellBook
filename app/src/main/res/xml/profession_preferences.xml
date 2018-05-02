@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="utf-8"?>
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <PreferenceCategory
+        android:layout="@layout/preference_category_summary"
+        android:summary="@string/profession_filter_message"
+        android:title="@string/classes" />
+
+    <SwitchPreference
+        android:defaultValue="true"
+        android:key="BARD"
+        android:persistent="true"
+        android:title="@string/bard" />
+
+    <SwitchPreference
+        android:defaultValue="true"
+        android:key="WARLOCK"
+        android:persistent="true"
+        android:title="@string/warlock" />
+
+    <SwitchPreference
+        android:defaultValue="true"
+        android:key="CLERIC"
+        android:persistent="true"
+        android:title="@string/cleric" />
+
+    <SwitchPreference
+        android:defaultValue="true"
+        android:key="DRUID"
+        android:persistent="true"
+        android:title="@string/druid" />
+
+    <SwitchPreference
+        android:defaultValue="true"
+        android:key="RANGER"
+        android:persistent="true"
+        android:title="@string/ranger" />
+
+    <SwitchPreference
+        android:defaultValue="true"
+        android:key="SORCERER"
+        android:persistent="true"
+        android:title="@string/sorcerer" />
+
+    <SwitchPreference
+        android:defaultValue="true"
+        android:key="WIZARD"
+        android:persistent="true"
+        android:title="@string/wizard" />
+
+    <SwitchPreference
+        android:defaultValue="true"
+        android:key="PALADIN"
+        android:persistent="true"
+        android:title="@string/paladin" />
+
+
+</PreferenceScreen>

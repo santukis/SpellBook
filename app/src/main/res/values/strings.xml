@@ -61,5 +61,8 @@
     <string name="description_html_start" translatable="false"><![CDATA[<html><head><style>body {color:#444444; line-height: 22px}</style></head><body align=\"justify\";>]]></string>
     <string name="description_html_end" translatable="false"><![CDATA[</body></html>]]></string>
     <string name="avatar_deleted_message">El personaje ha sido eliminado</string>
+    <string name="profession_filter_message">Filtra las búsquedas por clases</string>
+    <string name="classes">Clases</string>
+    <string name="cantrip">Truco</string>
 
 </resources>

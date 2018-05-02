@@ -47,11 +47,26 @@ public class SpellsAdapter extends RecyclerView.Adapter<SpellsAdapter.ViewHolder
         holder.schoolView.setText(spell.getSchool().getName());
         holder.schoolView.setTextColor(context.getResources().getColor(spell.getSchool().getColor()));
         String level = String.valueOf(spell.getLevel());
-        holder.levelView.setText(level.equals("0") ? "Truco" : "Nivel: " + level);
+        holder.levelView.setText(level.equals("0") ? context.getString(R.string.cantrip) : context.getString(R.string.level) + ": " + level);
+        addProfessions(spell, holder.professionsView);
 
         holder.itemView.setOnClickListener(v -> {
             onSpellClick.onClick(spell);
         });
+    }
+
+    private void addProfessions(Spell spell, TextView professionView) {
+        String professions = "";
+        for(int i = 0; i < spell.getProfessions().size(); i++) {
+            professions = professions.concat(
+                    context.getString(spell.getProfessions().get(i).getName()).substring(0, 2));
+
+            if(i < spell.getProfessions().size() - 1) {
+                professions = professions.concat(", ");
+            }
+        }
+
+        professionView.setText(professions);
     }
 
     @Override
@@ -105,6 +120,7 @@ public class SpellsAdapter extends RecyclerView.Adapter<SpellsAdapter.ViewHolder
 
     static class ViewHolder extends BaseViewHolder {
 
+        private TextView professionsView;
         private TextView nameView;
         private TextView schoolView;
         private TextView levelView;
@@ -112,6 +128,7 @@ public class SpellsAdapter extends RecyclerView.Adapter<SpellsAdapter.ViewHolder
         ViewHolder(View itemView) {
             super(itemView);
 
+            professionsView = itemView.findViewById(R.id.tv_profession);
             nameView = itemView.findViewById(R.id.tv_name);
             schoolView = itemView.findViewById(R.id.tv_school);
             levelView = itemView.findViewById(R.id.tv_level);

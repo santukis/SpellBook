@@ -1,6 +1,7 @@
 package com.santukis.spellbook.presentation.view;
 
 import android.app.Fragment;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.design.widget.NavigationView;
@@ -56,7 +57,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                 openView(new SpellsListFragment());
                 break;
             case R.id.navigation_show_preferences:
-                openView(new SettingsFragment());
+                startActivity(new Intent(this, SettingsActivity.class));
                 break;
             case R.id.navigation_show_about:
                 openView(new AboutFragment());

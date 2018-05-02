@@ -70,11 +70,16 @@ public class SpellsListFragment extends Fragment implements OnSpellClick, Spells
         initializeViewComponents(view);
         initializeViewListeners();
 
-        loadSpells();
-
         setHasOptionsMenu(true);
 
         return view;
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+
+        loadSpells();
     }
 
     private void initializeViewComponents(View view) {

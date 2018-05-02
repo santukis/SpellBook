@@ -2,7 +2,11 @@ package com.santukis.spellbook.data.gateway;
 
 import android.content.Context;
 
-import com.santukis.spellbook.data.filter.SchoolFilter;
+import com.santukis.spellbook.data.filter.Criteria;
+import com.santukis.spellbook.data.filter.ProfessionCriteria;
+import com.santukis.spellbook.data.filter.SchoolCriteria;
+import com.santukis.spellbook.data.filter.SpellFilter;
+import com.santukis.spellbook.data.local.Settings;
 import com.santukis.spellbook.data.local.SpellsDatabase;
 import com.santukis.spellbook.data.mapper.SpellMapper;
 import com.santukis.spellbook.data.model.SpellEntity;
@@ -22,12 +26,12 @@ public class SpellsGatewayImp implements SpellsGateway {
 
     private Spell cachedSpell = Spell.EMPTY_SPELL;
 
-    private SettingsGatewayImp preferences;
+    private Settings settings;
     private SpellsDatabase database;
 
     private SpellsGatewayImp(Context context) {
         database = SpellsDatabase.getDatabase(context);
-        preferences = SettingsGatewayImp.getInstance(context);
+        settings = Settings.getInstance(context);
     }
 
     public static SpellsGatewayImp getInstance(Context context) {
@@ -46,16 +50,16 @@ public class SpellsGatewayImp implements SpellsGateway {
 
             String csv;
 
-            while((csv = reader.readLine()) != null) {
+            while ((csv = reader.readLine()) != null) {
                 Spell spell = SpellMapper.map(csv);
                 spells.add(spell);
             }
 
-            spells = SchoolFilter.filter(spells, preferences.getFilters());
+            spells = filterSpells(spells);
 
             stream.close();
 
-            return  spells;
+            return spells;
 
         } catch (IOException e) {
             e.printStackTrace();
@@ -76,13 +80,13 @@ public class SpellsGatewayImp implements SpellsGateway {
 
     @Override
     public boolean saveSpell(Spell spell, List<String> avatarsNames) {
-        if(spell != Spell.EMPTY_SPELL) cachedSpell = spell;
+        if (spell != Spell.EMPTY_SPELL) cachedSpell = spell;
 
-        if(avatarsNames == null || avatarsNames.isEmpty()) return false;
+        if (avatarsNames == null || avatarsNames.isEmpty()) return false;
 
-        for(String name : avatarsNames) {
+        for (String name : avatarsNames) {
             long insertedSpell = database.spellsDao().insert(SpellMapper.map(cachedSpell, name));
-            if(insertedSpell == 0) return false;
+            if (insertedSpell == 0) return false;
         }
 
         return true;
@@ -92,5 +96,15 @@ public class SpellsGatewayImp implements SpellsGateway {
     public boolean deleteSpell(Spell spell) {
         database.spellsDao().delete(SpellMapper.map(spell, ""));
         return true;
+    }
+
+    private List<Spell> filterSpells(List<Spell> unfilteredList) {
+        Criteria<Spell> schoolCriteria = new SchoolCriteria(settings.getSchools());
+        Criteria<Spell> professionCriteria = new ProfessionCriteria(settings.getProfessions());
+
+        return new SpellFilter(unfilteredList)
+                .by(schoolCriteria)
+                .and(professionCriteria)
+                .filter();
     }
 }

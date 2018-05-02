@@ -23,6 +23,7 @@
             android:layout_alignParentTop="true"
             android:layout_alignParentStart="true"
             android:layout_marginBottom="5dp"
+            android:layout_toStartOf="@+id/tv_level"
             android:textSize="17sp"
             tools:text="Amigos [Friends]"/>
 
@@ -32,7 +33,7 @@
             android:layout_height="wrap_content"
             android:layout_below="@+id/tv_name"
             android:layout_alignParentStart="true"
-            android:layout_toStartOf="@+id/tv_level"
+            android:layout_toStartOf="@+id/tv_profession"
             android:textStyle="bold"
             tools:text="Encantamiento"/>
 
@@ -41,9 +42,16 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentEnd="true"
-            android:layout_alignBaseline="@id/tv_school"
+            android:layout_alignBaseline="@id/tv_name"
             android:textStyle="italic"
             tools:text="Truco"/>
+
+        <TextView
+            android:id="@+id/tv_profession"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentEnd="true"
+            android:layout_alignBaseline="@id/tv_school" />
 
     </RelativeLayout>
 
