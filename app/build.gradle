@@ -1,14 +1,6 @@
 apply plugin: 'com.android.application'
 
 android {
-    signingConfigs {
-        spellBook {
-            keyAlias 'spells'
-            keyPassword 'FiloSofia33!3'
-            storeFile file('E:/PROGRAMACION/Android/keystore/spellBook.jks')
-            storePassword 'FiloSofia33!3'
-        }
-    }
     compileSdkVersion 27
     defaultConfig {
         applicationId "com.santukis.spellbook"
