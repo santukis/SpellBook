@@ -13,17 +13,17 @@ import java.util.List;
 public class SpellsControllerImp implements SpellsController{
 
 
-    private final UseCase<InputStream, List<Spell>> getSpells;
-    private final UseCase<String, List<Spell>> getAvatarSpells;
-    private final UseCase<SaveSpell.RequestValues, Boolean> saveSpell;
-    private final UseCase<Spell, Boolean> deleteSpell;
-    private final UseCase<SortSpellsBy.RequestValues, List<Spell>> sortBy;
+    private final UseCase<InputStream, ?> getSpells;
+    private final UseCase<String, ?> getAvatarSpells;
+    private final UseCase<SaveSpell.RequestValues, ?> saveSpell;
+    private final UseCase<Spell, ?> deleteSpell;
+    private final UseCase<SortSpellsBy.RequestValues, ?> sortBy;
 
-    public SpellsControllerImp(UseCase<InputStream, List<Spell>> getSpells,
-                               UseCase<String, List<Spell>> getAvatarSpells,
-                               UseCase<SaveSpell.RequestValues, Boolean> saveSpell,
-                               UseCase<Spell, Boolean> deleteSpell,
-                               UseCase<SortSpellsBy.RequestValues, List<Spell>> sortBy) {
+    public SpellsControllerImp(UseCase<InputStream, ?> getSpells,
+                               UseCase<String, ?> getAvatarSpells,
+                               UseCase<SaveSpell.RequestValues, ?> saveSpell,
+                               UseCase<Spell, ?> deleteSpell,
+                               UseCase<SortSpellsBy.RequestValues, ?> sortBy) {
         this.getSpells = getSpells;
         this.getAvatarSpells = getAvatarSpells;
         this.saveSpell = saveSpell;

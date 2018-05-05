@@ -7,9 +7,9 @@ import com.santukis.spellbook.presentation.boundary.AvatarCreationController;
 
 public class AvatarCreationControllerImp implements AvatarCreationController {
 
-    private final UseCase<Avatar, Boolean> saveAvatar;
+    private final UseCase<Avatar, ?> saveAvatar;
 
-    public AvatarCreationControllerImp(UseCase<Avatar, Boolean> saveAvatar) {
+    public AvatarCreationControllerImp(UseCase<Avatar, ?> saveAvatar) {
         this.saveAvatar = saveAvatar;
     }
 

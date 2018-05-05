@@ -1,7 +1,6 @@
 package com.santukis.spellbook.presentation.controller;
 
 import com.santukis.spellbook.domain.UseCase;
-import com.santukis.spellbook.domain.model.Avatar;
 import com.santukis.spellbook.domain.model.Spell;
 import com.santukis.spellbook.domain.usecase.SaveSpell;
 import com.santukis.spellbook.presentation.boundary.SpellDetailController;
@@ -10,13 +9,13 @@ import java.util.List;
 
 public class SpellDetailControllerImp implements SpellDetailController {
 
-    private final UseCase<Void, Spell> getSpell;
-    private final UseCase<Void, List<Avatar>> getAvatars;
-    private final UseCase<SaveSpell.RequestValues, Boolean> saveSpell;
+    private final UseCase<Void, ?> getSpell;
+    private final UseCase<Void, ?> getAvatars;
+    private final UseCase<SaveSpell.RequestValues, ?> saveSpell;
 
-    public SpellDetailControllerImp(UseCase<Void, Spell> getSpell,
-                                    UseCase<Void, List<Avatar>> getAvatars,
-                                    UseCase<SaveSpell.RequestValues, Boolean> saveSpell) {
+    public SpellDetailControllerImp(UseCase<Void, ?> getSpell,
+                                    UseCase<Void, ?> getAvatars,
+                                    UseCase<SaveSpell.RequestValues, ?> saveSpell) {
         this.getSpell = getSpell;
         this.getAvatars = getAvatars;
         this.saveSpell = saveSpell;

@@ -44,9 +44,11 @@ public class SpellsGatewayImp implements SpellsGateway {
     @Override
     public List<Spell> loadSpells(InputStream stream) {
         List<Spell> spells = new ArrayList<>();
+        BufferedReader reader = null;
 
         try {
-            BufferedReader reader = new BufferedReader(new InputStreamReader(stream, "ISO-8859-1"));
+
+            reader = new BufferedReader(new InputStreamReader(stream, "ISO-8859-1"));
 
             String csv;
 
@@ -57,13 +59,19 @@ public class SpellsGatewayImp implements SpellsGateway {
 
             spells = filterSpells(spells);
 
-            stream.close();
-
             return spells;
 
         } catch (IOException e) {
             e.printStackTrace();
             return spells;
+
+        } finally {
+            try {
+                reader.close();
+
+            } catch (NullPointerException | IOException e) {
+                e.printStackTrace();
+            }
         }
     }
 
