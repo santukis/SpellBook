@@ -19,7 +19,7 @@ public abstract class SpellsDatabase extends RoomDatabase {
 
     public static SpellsDatabase getDatabase(Context context) {
         if(DATABASE == null) {
-            DATABASE = Room.databaseBuilder(context, SpellsDatabase.class, "spellsDB").build();
+            DATABASE = Room.databaseBuilder(context.getApplicationContext(), SpellsDatabase.class, "spellsDB").build();
         }
         return DATABASE;
     }
