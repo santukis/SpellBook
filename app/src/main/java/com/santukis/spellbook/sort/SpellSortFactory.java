@@ -1,4 +1,4 @@
-package com.santukis.spellbook.domain.sort;
+package com.santukis.spellbook.sort;
 
 public class SpellSortFactory {
 

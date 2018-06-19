@@ -15,12 +15,12 @@ public class SpellFilter implements Filter<Spell> {
     }
 
     @Override
-    public List<Spell> filter() {
+    public List<Spell> toList() {
         return filteredList;
     }
 
     @Override
-    public SpellFilter by(Criteria<Spell> criteria) {
+    public SpellFilter filterBy(Criteria<Spell> criteria) {
         filteredList = criteria.filter(unfilteredList);
         return this;
     }

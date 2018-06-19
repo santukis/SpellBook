@@ -4,9 +4,9 @@ import java.util.List;
 
 public interface Filter<T> {
 
-    List<T> filter();
+    List<T> toList();
 
-    Filter<T> by(Criteria<T> criteria);
+    Filter<T> filterBy(Criteria<T> criteria);
 
     Filter<T> and(Criteria<T> criteria);
 

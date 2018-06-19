@@ -111,8 +111,8 @@ public class SpellsGatewayImp implements SpellsGateway {
         Criteria<Spell> professionCriteria = new ProfessionCriteria(settings.getProfessions());
 
         return new SpellFilter(unfilteredList)
-                .by(schoolCriteria)
+                .filterBy(schoolCriteria)
                 .and(professionCriteria)
-                .filter();
+                .toList();
     }
 }
