@@ -1,4 +1,4 @@
-package com.santukis.spellbook.sort;
+package com.santukis.spellbook.domain.sort;
 
 import java.util.Comparator;
 import java.util.List;
@@ -11,7 +11,7 @@ public class Quicksort {
 
     private static <T> void sort(List<T> list, Comparator<? super T> comparator, int low, int high) {
 
-        if(high <= low) return;
+        if (high <= low) return;
 
         int i = low;
         int j = high + 1;
@@ -30,7 +30,7 @@ public class Quicksort {
 
         swap(list, low, j);
 
-        sort(list, comparator, low, j -1);
+        sort(list, comparator, low, j - 1);
         sort(list, comparator, j + 1, high);
 
     }

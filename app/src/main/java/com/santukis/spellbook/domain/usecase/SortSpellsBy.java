@@ -5,8 +5,8 @@ import com.santukis.spellbook.domain.UseCase;
 import com.santukis.spellbook.domain.UseCaseScheduler;
 import com.santukis.spellbook.domain.boundary.ShowSpellsUseCaseOutput;
 import com.santukis.spellbook.domain.model.Spell;
-import com.santukis.spellbook.sort.SpellSort;
-import com.santukis.spellbook.sort.SpellSortFactory;
+import com.santukis.spellbook.domain.sort.SpellSort;
+import com.santukis.spellbook.domain.sort.SpellSortFactory;
 
 import java.util.ArrayList;
 import java.util.List;

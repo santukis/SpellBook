@@ -1,4 +1,4 @@
-package com.santukis.spellbook.sort;
+package com.santukis.spellbook.domain.sort;
 
 import com.santukis.spellbook.domain.model.School;
 import com.santukis.spellbook.domain.model.Spell;
