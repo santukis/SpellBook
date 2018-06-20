@@ -1,17 +1,23 @@
-package com.santukis.spellbook.domain.sort;
+package com.santukis.spellbook.domain.sort.algorithms;
 
 import java.util.Comparator;
 import java.util.List;
 
-public class Quicksort {
+public class Quicksort implements Algorithm {
 
-    public static <T> void sort(List<T> list, Comparator<? super T> comparator) {
+    private static final int CUTOFF = 5;
+
+    public <T> void sort(List<T> list, Comparator<? super T> comparator) {
         sort(list, comparator, 0, list.size() - 1);
     }
 
-    private static <T> void sort(List<T> list, Comparator<? super T> comparator, int low, int high) {
+    private <T> void sort(List<T> list, Comparator<? super T> comparator, int low, int high) {
 
-        if (high <= low) return;
+        if (high <= low + CUTOFF) {
+            new Insertionsort().sort(list, comparator);
+            return;
+
+        } //Sedgewick, R., Wayne, K. 2011 Algorithms. Four Edition. pp. 296
 
         int i = low;
         int j = high + 1;
@@ -33,10 +39,5 @@ public class Quicksort {
         sort(list, comparator, low, j - 1);
         sort(list, comparator, j + 1, high);
 
-    }
-
-    private static <T> void swap(List<T> list, int i, int j) {
-        T aux = list.set(i, list.get(j));
-        list.set(j, aux);
     }
 }
