@@ -7,6 +7,12 @@ public class Heapsort implements Algorithm {
 
     //Priority Queue example from Sedgewick R., Wayne K. pp 309 y ss;
 
+    //Performance characteristics from Sedgewick R., Wayne K. pp 342
+
+    //                     ORDER OF GROWTH TO SORT N ITEMS
+    //      STABLE?     IN PLACE?     RUNNINN TIME    EXTRA SPACE
+    //         NO          YES           n log n           1
+
     @Override
     public <T> void sort(List<T> list, Comparator<? super T> comparator) {
 

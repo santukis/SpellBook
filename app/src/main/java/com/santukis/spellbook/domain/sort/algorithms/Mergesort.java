@@ -6,6 +6,12 @@ import java.util.List;
 
 public class Mergesort implements Algorithm {
 
+    //Performance characteristics from Sedgewick R., Wayne K. pp 342
+
+    //                     ORDER OF GROWTH TO SORT N ITEMS
+    //      STABLE?     IN PLACE?     RUNNINN TIME    EXTRA SPACE
+    //        YES          YES           n log n           n
+
     private static List aux;
 
     public <T> void sort(List<T> list, Comparator<? super T> comparator) {

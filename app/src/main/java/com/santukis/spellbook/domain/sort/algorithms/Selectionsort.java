@@ -3,7 +3,13 @@ package com.santukis.spellbook.domain.sort.algorithms;
 import java.util.Comparator;
 import java.util.List;
 
-public class Selectionsort implements Algorithm{
+public class Selectionsort implements Algorithm {
+
+    //Performance characteristics from Sedgewick R., Wayne K. pp 342
+
+    //                     ORDER OF GROWTH TO SORT N ITEMS
+    //      STABLE?     IN PLACE?     RUNNINN TIME    EXTRA SPACE
+    //         NO          YES           n**2              1
 
     public <T> void sort(List<T> list, Comparator<? super T> comparator) {
 

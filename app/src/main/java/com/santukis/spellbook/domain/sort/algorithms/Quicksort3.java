@@ -5,6 +5,12 @@ import java.util.List;
 
 public class Quicksort3 implements Algorithm {
 
+    //Performance characteristics from Sedgewick R., Wayne K. pp 342
+
+    //                     ORDER OF GROWTH TO SORT N ITEMS
+    //      STABLE?     IN PLACE?     RUNNINN TIME    EXTRA SPACE
+    //         NO          YES           n log n          lg n
+
     public <T> void sort(List<T> list, Comparator<? super T> comparator) {
         sort(list, comparator, 0, list.size() - 1);
     }
