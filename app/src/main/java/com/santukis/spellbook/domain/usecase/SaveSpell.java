@@ -25,7 +25,7 @@ public class SaveSpell extends UseCase<SaveSpell.RequestValues, Boolean> {
     @Override
     protected void executeUseCase(RequestValues requestValues) {
 
-        if (gateway.saveSpell(requestValues.getSpell(), requestValues.getAvatars())) {
+        if (gateway.saveSpell(requestValues.spell, requestValues.avatars)) {
             submitResponse(Response.success(true));
 
         } else {
@@ -51,14 +51,6 @@ public class SaveSpell extends UseCase<SaveSpell.RequestValues, Boolean> {
         public RequestValues(Spell spell, List<String> avatars) {
             this.spell = spell;
             this.avatars = avatars;
-        }
-
-        Spell getSpell() {
-            return spell;
-        }
-
-        List<String> getAvatars() {
-            return avatars;
         }
     }
 }

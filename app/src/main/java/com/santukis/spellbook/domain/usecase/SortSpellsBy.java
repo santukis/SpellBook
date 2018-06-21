@@ -22,8 +22,8 @@ public class SortSpellsBy extends UseCase<SortSpellsBy.RequestValues, List<Spell
 
     @Override
     protected void executeUseCase(RequestValues requestValues) {
-        SpellSort spellSort = SpellSortFactory.create(requestValues.getCriteria());
-        List<Spell> orderedSpells = new ArrayList<>(spellSort.sort(requestValues.getUnorderedSpells()));
+        SpellSort spellSort = SpellSortFactory.create(requestValues.criteria);
+        List<Spell> orderedSpells = new ArrayList<>(spellSort.sort(requestValues.unorderedSpells));
 
         if(orderedSpells.isEmpty()) {
             submitResponse(Response.error("Error ordering"));
@@ -50,14 +50,6 @@ public class SortSpellsBy extends UseCase<SortSpellsBy.RequestValues, List<Spell
         public RequestValues(List<Spell> unorderedSpells, int criteria) {
             this.unorderedSpells = unorderedSpells;
             this.criteria = criteria;
-        }
-
-        List<Spell> getUnorderedSpells() {
-            return unorderedSpells;
-        }
-
-        int getCriteria() {
-            return criteria;
         }
     }
 }

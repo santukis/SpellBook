@@ -1,5 +1,6 @@
 package com.santukis.spellbook.domain.sort;
 
+import com.santukis.spellbook.domain.sort.algorithms.Heapsort;
 import com.santukis.spellbook.domain.sort.algorithms.Quicksort;
 import com.santukis.spellbook.domain.sort.algorithms.Quicksort3;
 
@@ -15,7 +16,7 @@ public class SpellSortFactory {
                 return new LevelSort(new Quicksort3());
 
             case SpellSort.SCHOOL:
-                return new SchoolSort(new Quicksort3());
+                return new SchoolSort(new Heapsort());
         }
 
         return new NoSort();
