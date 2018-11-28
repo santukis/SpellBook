@@ -7,6 +7,7 @@ import android.preference.PreferenceFragment;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatDelegate;
 import android.util.Log;
+import android.view.MenuItem;
 
 import com.santukis.spellbook.R;
 
@@ -31,6 +32,19 @@ public class SettingsActivity extends PreferenceActivity {
             delegate = AppCompatDelegate.create(this, null);
         }
         return delegate;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        if (item.getItemId() == android.R.id.home) {
+            if (getFragmentManager().getBackStackEntryCount() > 0) {
+                getFragmentManager().popBackStackImmediate();
+
+            } else {
+                finish();
+            }
+        }
+        return true;
     }
 
     @Override

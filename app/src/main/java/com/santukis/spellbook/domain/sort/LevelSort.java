@@ -15,7 +15,7 @@ public class LevelSort implements SpellSort {
 
     @Override
     public List<Spell> sort(List<Spell> unorderedSpells) {
-        algorithm.sort(unorderedSpells, (o1, o2) ->  Integer.compare(o1.getLevel(), o2.getLevel()));
+        algorithm.sort(unorderedSpells, (o1, o2) ->  ((Integer)o1.getLevel()).compareTo(o2.getLevel()));
         return unorderedSpells;
     }
 }

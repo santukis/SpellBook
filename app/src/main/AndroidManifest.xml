@@ -24,8 +24,8 @@
             </intent-filter>
         </activity>
         <activity android:name=".presentation.view.SettingsActivity"
-            android:parentActivityName=".presentation.view.MainActivity"
-            android:theme="@style/AppTheme"/>
+            android:theme="@style/AppTheme">
+        </activity>
     </application>
 
 </manifest>
