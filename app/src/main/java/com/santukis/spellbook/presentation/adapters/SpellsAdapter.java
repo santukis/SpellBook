@@ -17,10 +17,11 @@ import java.util.List;
 import java.util.Observable;
 import java.util.Observer;
 
-public class SpellsAdapter extends RecyclerView.Adapter<SpellsAdapter.ViewHolder> implements Observer{
+public class SpellsAdapter extends RecyclerView.Adapter<SpellsAdapter.ViewHolder> implements Observer {
 
     private Context context;
-    private List<Spell> spells = new ArrayList<>();
+    private List<Spell> filteredSpells = new ArrayList<>();
+    private List<Spell> unfilteredSpells = new ArrayList<>();
 
     private OnSpellClick onSpellClick;
 
@@ -41,7 +42,7 @@ public class SpellsAdapter extends RecyclerView.Adapter<SpellsAdapter.ViewHolder
 
     @Override
     public void onBindViewHolder(@NonNull SpellsAdapter.ViewHolder holder, int position) {
-        final Spell spell = spells.get(position);
+        final Spell spell = filteredSpells.get(position);
 
         holder.nameView.setText(spell.getName());
         holder.schoolView.setText(spell.getSchool().getName());
@@ -57,11 +58,11 @@ public class SpellsAdapter extends RecyclerView.Adapter<SpellsAdapter.ViewHolder
 
     private void addProfessions(Spell spell, TextView professionView) {
         String professions = "";
-        for(int i = 0; i < spell.getProfessions().size(); i++) {
+        for (int i = 0; i < spell.getProfessions().size(); i++) {
             professions = professions.concat(
                     context.getString(spell.getProfessions().get(i).getName()).substring(0, 2));
 
-            if(i < spell.getProfessions().size() - 1) {
+            if (i < spell.getProfessions().size() - 1) {
                 professions = professions.concat(", ");
             }
         }
@@ -71,50 +72,56 @@ public class SpellsAdapter extends RecyclerView.Adapter<SpellsAdapter.ViewHolder
 
     @Override
     public int getItemCount() {
-        return spells.size();
+        return filteredSpells.size();
     }
 
     public Spell getSpell(int position) {
-        return spells.get(position);
+        return filteredSpells.get(position);
     }
 
-    public List<Spell> getSpells() {
-        return spells;
+    public List<Spell> getFilteredSpells() {
+        return filteredSpells;
     }
 
     public void updateSpells(List<Spell> spells) {
-        this.spells.clear();
-        this.spells.addAll(spells);
+        this.filteredSpells.clear();
+        this.filteredSpells.addAll(spells);
+
+        this.unfilteredSpells.clear();
+        this.unfilteredSpells.addAll(spells);
+
         notifyDataSetChanged();
     }
 
     public void removeSpell(int position) {
-        spells.remove(position);
+        filteredSpells.remove(position);
         notifyItemRemoved(position);
     }
 
     public void restoreSpell(int position, Spell spell) {
-        spells.add(position, spell);
+        filteredSpells.add(position, spell);
         notifyItemInserted(position);
     }
 
     @Override
     public void update(Observable o, Object arg) {
-        if(arg instanceof List<?>) {
-            List<String> words = (List<String>) arg;
-            List<Spell> spellsFound = new ArrayList<>();
+        if (arg instanceof String) {
+            String word = ((String) arg).toLowerCase();
 
-            for(String word : words) {
-                word = word.toLowerCase();
+            filteredSpells.clear();
 
-                for(Spell spell : spells) {
-                    if(spell.getName().toLowerCase().contains(word)) {
-                        spellsFound.add(spell);
+            if (word.isEmpty()) {
+                filteredSpells.addAll(unfilteredSpells);
+
+            } else {
+                for (Spell spell : unfilteredSpells) {
+                    if (spell.getName().toLowerCase().contains(word)) {
+                        filteredSpells.add(spell);
                     }
                 }
             }
 
-            updateSpells(spellsFound);
+            notifyDataSetChanged();
         }
     }
 

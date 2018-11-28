@@ -15,7 +15,7 @@ public class SchoolSort implements SpellSort {
 
     @Override
     public List<Spell> sort(List<Spell> unorderedSpells) {
-        algorithm.sort(unorderedSpells, (o1, o2) -> o1.getSchool().compareTo(o2.getSchool()));
+        algorithm.sort(unorderedSpells, (o1, o2) -> o1.getSchool().name().compareTo(o2.getSchool().name()));
         return unorderedSpells;
     }
 }

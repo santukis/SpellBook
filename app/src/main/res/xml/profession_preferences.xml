@@ -3,7 +3,7 @@
 
     <PreferenceCategory
         android:layout="@layout/preference_category_summary"
-        android:summary="@string/profession_filter_message"
+        android:summary="@string/school_filter_message"
         android:title="@string/classes" />
 
     <SwitchPreference

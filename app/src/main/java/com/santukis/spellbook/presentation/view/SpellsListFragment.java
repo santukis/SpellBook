@@ -134,7 +134,7 @@ public class SpellsListFragment extends Fragment implements OnSpellClick, Spells
         new AlertDialog.Builder(getActivity())
                 .setTitle(R.string.order_by)
                 .setItems(R.array.order_by, ((dialog, which) -> {
-                    controller.sort(adapter.getSpells(), which);
+                    controller.sort(adapter.getFilteredSpells(), which);
                 }))
                 .show();
     }

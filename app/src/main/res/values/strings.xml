@@ -40,6 +40,7 @@
     <string name="characters">Personajes</string>
     <string name="no_spells_message">No hay hechizos</string>
     <string name="delete">Borrar</string>
+    <string name="filter_by">Filtrar por...</string>
     <string name="filter">Filtro</string>
     <string name="search">Búsqueda</string>
     <string name="school">Escuelas de magía</string>
@@ -57,11 +58,10 @@
     <string name="nosolorol_description"><![CDATA[<html><head><style>body {color:#444444; line-height: 22px}</style></head><body align=\"justify\";><p>La descripción de los hechizos ha sido posible gracias a la liberación de la traducción del SRD 5.1 de WOF de Nosolorol, cuya traducción ha sido realizada por Ana Navalón. Mas info en:</p></body></html>]]></string>
     <string name="nosolorl_link" translatable="false">http://srd.nosolorol.com/DD5/index.html</string>
     <string name="github_link" translatable="false">https://github.com/santukis</string>
-    <string name="school_filter_message">Filtra las búsquedas por escuela de magia</string>
+    <string name="school_filter_message">Filtra los hechizos por escuela de magia</string>
     <string name="description_html_start" translatable="false"><![CDATA[<html><head><style>body {color:#444444; line-height: 22px}</style></head><body align=\"justify\";>]]></string>
     <string name="description_html_end" translatable="false"><![CDATA[</body></html>]]></string>
     <string name="avatar_deleted_message">El personaje ha sido eliminado</string>
-    <string name="profession_filter_message">Filtra las búsquedas por clases</string>
     <string name="classes">Clases</string>
     <string name="cantrip">Truco</string>
 

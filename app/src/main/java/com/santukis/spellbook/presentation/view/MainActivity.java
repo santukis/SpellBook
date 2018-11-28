@@ -58,7 +58,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
             case R.id.navigation_show_spells:
                 openView(new SpellsListFragment());
                 break;
-            case R.id.navigation_show_preferences:
+            case R.id.navigation_show_filter:
                 startActivity(new Intent(this, SettingsActivity.class));
                 break;
             case R.id.navigation_show_about:

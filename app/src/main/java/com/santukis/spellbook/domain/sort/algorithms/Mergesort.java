@@ -10,7 +10,7 @@ public class Mergesort implements Algorithm {
 
     //                     ORDER OF GROWTH TO SORT N ITEMS
     //      STABLE?     IN PLACE?     RUNNINN TIME    EXTRA SPACE
-    //        YES          YES           n log n           n
+    //        YES          NO           n log n           n
 
     private static List aux;
 
@@ -32,7 +32,7 @@ public class Mergesort implements Algorithm {
         int i = low;
         int j = middle + 1;
 
-        for(int k = low; k <= high; k++) {
+        for (int k = low; k <= high; k++) {
             aux.add(k, list.get(k));
         }
 

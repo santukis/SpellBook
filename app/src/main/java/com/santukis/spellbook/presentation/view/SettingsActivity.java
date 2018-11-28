@@ -1,15 +1,12 @@
 package com.santukis.spellbook.presentation.view;
 
-import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.preference.PreferenceActivity;
 import android.preference.PreferenceFragment;
 import android.support.annotation.Nullable;
-import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatDelegate;
 import android.util.Log;
-import android.view.MenuItem;
 
 import com.santukis.spellbook.R;
 
@@ -24,7 +21,8 @@ public class SettingsActivity extends PreferenceActivity {
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        getDelegate().getSupportActionBar().setTitle(R.string.settings);
+        getDelegate().getSupportActionBar().setTitle(R.string.filter_by);
+        getDelegate().getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
     }
 

@@ -20,9 +20,9 @@
 
         <menu>
             <item
-                android:id="@+id/navigation_show_preferences"
-                android:icon="@drawable/ic_settings"
-                android:title="@string/preferences" />
+                android:id="@+id/navigation_show_filter"
+                android:icon="@drawable/ic_filter"
+                android:title="@string/filter_by" />
 
             <item
                 android:id="@+id/navigation_show_about"

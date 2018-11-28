@@ -2,8 +2,6 @@ package com.santukis.spellbook.presentation.components.search;
 
 import android.support.v7.widget.SearchView;
 
-import java.util.ArrayList;
-import java.util.List;
 import java.util.Observable;
 
 
@@ -17,10 +15,8 @@ public class TextSearch extends Observable implements SearchView.OnQueryTextList
 
     @Override
     public boolean onQueryTextChange(String currentText) {
-        List<String> results = new ArrayList<>();
-        results.add(currentText);
         setChanged();
-        notifyObservers(results);
+        notifyObservers(currentText);
         return true;
     }
 }

@@ -49,7 +49,7 @@ public class AvatarsAdapter extends RecyclerView.Adapter<AvatarsAdapter.ViewHold
         holder.professionImage.setBackgroundResource(avatar.getProfession().getImage());
 
 
-        holder.spellsButton.setOnClickListener(v -> {
+        holder.itemView.setOnClickListener(v -> {
             onAvatarClick.onClick(avatar);
         });
     }
